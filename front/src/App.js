@@ -9,6 +9,7 @@ function App() {
   const [countryCode, setCountryCode] = useState("0");
   const [flagUrl, setFlagUrl] = useState("");
   const [countryName, setCountryName] = useState("");
+  const [countryNameTab, setCountryNameTab] = useState([]);
 
   useEffect(() => {
     const countryData = async () => {
@@ -22,6 +23,8 @@ function App() {
         console.log(response.data[0])
         setFlagUrl(response.data[0].flags.png);
         setCountryName(response.data[0].name.common)
+        let tab = response.data[0].name.common.split("")
+        setCountryNameTab(tab);
       } catch (error) {
         console.error('Error fetching flag:', error);
       }
@@ -42,10 +45,16 @@ function App() {
       <br></br>
       {countryName}
       {flagUrl && <Flag flagUrl={flagUrl} />}
-      <div className='flex flex-wrap justify-center items-center px-5'>
-        <div className='w-10 h-10 mt-1 gradient-border flex justify-center items-center text-white'>
-          A
-        </div>
+      <div className='flex flex-wrap justify-center items-center px-12'>
+        {
+          countryNameTab.map((letter, index) => {
+            return (
+              <div key={index} className='w-10 h-10 mt-1 gradient-border flex justify-center items-center text-white'>
+                {letter.toUpperCase()}
+              </div>
+            )
+          })
+        }
       </div>
     </div>
   );
