@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import seedrandom from 'seedrandom';
 import json_country_code from './res/country_codes.json';
+import Flag from './components/Flag.js';
 import axios from 'axios';
+import './App.css';
 
 function App() {
   const [countryCode, setCountryCode] = useState("0");
   const [flagUrl, setFlagUrl] = useState("");
+  const [countryName, setCountryName] = useState("");
 
   useEffect(() => {
     const countryData = async () => {
       const seed = new Date().toLocaleDateString();
-      seedrandom(seed, { global: true });
-      const randomNumber = getRandomInt(2, 251); 
+      seedrandom(seed, { global: true }); // On initialise notre seed random ici c'est en fonction de la date
+      const randomNumber = getRandomInt(0, 249);  // On prend un nombre aleatoire entre 0 et 250
       setCountryCode(json_country_code[randomNumber]);
-      
+
       try {
-        const response = await axios.get(`https://restcountries.com/v3.1/alpha/${json_country_code[randomNumber]}?fields=flags`);
-        console.log(response.data.flags.png)
-        setFlagUrl(response.data.flags.png);
+        const response = await axios.get(`https://restcountries.com/v3.1/alpha/${json_country_code[randomNumber]}`);
+        console.log(response.data[0])
+        setFlagUrl(response.data[0].flags.png);
+        setCountryName(response.data[0].name.common)
       } catch (error) {
         console.error('Error fetching flag:', error);
       }
@@ -29,13 +33,20 @@ function App() {
   function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; 
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   return (
-    <div>
+    <div className='flex flex-col items-center text-white'>
       {countryCode}
-      {flagUrl && <img alt='Flag' style={{ height: "350px", width: "550px" }} src={flagUrl}></img>}
+      <br></br>
+      {countryName}
+      {flagUrl && <Flag flagUrl={flagUrl} />}
+      <div className='flex flex-wrap justify-center items-center px-5'>
+        <div className='w-10 h-10 mt-1 gradient-border flex justify-center items-center text-white'>
+          A
+        </div>
+      </div>
     </div>
   );
 }

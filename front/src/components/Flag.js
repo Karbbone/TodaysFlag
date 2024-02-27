@@ -1,9 +1,7 @@
 import React from "react";
-function Flag(){
+function Flag(props){
     return(
-        <div>
-            flag
-        </div>
+        <img alt='Flag' className="flag" style={{ height: "250px", width: "400px" }} src={props.flagUrl}></img>
     )
 }
 export default Flag;
