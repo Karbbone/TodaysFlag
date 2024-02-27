@@ -48,8 +48,9 @@ function App() {
       <div className='flex flex-wrap justify-center items-center px-12'>
         {
           countryNameTab.map((letter, index) => {
+            let bg = letter === " " ? "#e6e6e6" : "#1D1F20"
             return (
-              <div key={index} className='w-10 h-10 mt-1 gradient-border flex justify-center items-center text-white'>
+              <div key={index} style={{background:bg}} className='w-10 h-10 mt-1 gradient-border flex justify-center items-center text-white'>
                 {letter.toUpperCase()}
               </div>
             )
