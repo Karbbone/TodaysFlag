@@ -6,8 +6,8 @@ body{
   --borderWidth: 3px;
   background: #1D1F20;
   position: relative;
-  border-radius: var(--borderWidth);
 }
+
 .gradient-border:after {
   content: '';
   position: absolute;
