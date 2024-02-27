@@ -37,11 +37,12 @@ function App() {
   }
 
   return (
-    <div className='flex flex-col items-center text-white'>
-      {countryCode}
-      <br></br>
-      {countryName}
-      {flagUrl && <Flag flagUrl={flagUrl} />}
+    <div className='text-center text-white'>
+      <p>{countryCode}</p>
+      <p>{countryName}</p>
+      <div id='img'>
+        {flagUrl && <Flag flagUrl={flagUrl} />}
+      </div>
       <div className='flex flex-wrap justify-center items-center px-5'>
         <div className='w-10 h-10 mt-1 gradient-border flex justify-center items-center text-white'>
           A
