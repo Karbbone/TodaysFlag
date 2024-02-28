@@ -10,12 +10,36 @@ function App() {
   const [flagUrl, setFlagUrl] = useState("");
   const [countryName, setCountryName] = useState("");
   const [countryNameTab, setCountryNameTab] = useState([]);
-  const [currentLetter,setCurrentLetter] = useState(-1);
+  const [countryNameTabRep, setCountryNameTabRep] = useState([]);
+  const [currentLetter, setCurrentLetter] = useState(0);
 
   useEffect(() => {
     countryData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    window.addEventListener('keydown', keyListener);
+
+    return () => {
+      window.removeEventListener('keydown', keyListener);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [[], currentLetter]);
+
+  const keyListener = (event) => {
+    let letter = currentLetter;
+    console.log(event.key)
+    if (event.key === "Backspace") {
+      if (currentLetter > 0) {
+        letter = letter - 1
+        setCurrentLetter(letter);
+      }
+    } else if (/^[a-zA-Z]$/.test(event.key)) {
+      if (currentLetter < countryNameTab.length - 1) {
+        setCurrentLetter(prevLetter => prevLetter + 1);
+      }
+    }
+  };
 
   const countryData = async () => {
     const seed = new Date().toLocaleDateString();
@@ -25,11 +49,18 @@ function App() {
 
     try {
       const response = await axios.get(`https://restcountries.com/v3.1/alpha/${json_country_code[randomNumber]}`);
-      console.log(response.data[0])
       setFlagUrl(response.data[0].flags.png);
       setCountryName(response.data[0].name.common)
       let tab = response.data[0].name.common.split("")
       setCountryNameTab(tab);
+      for (let i = 0; i < tab.length; i++){
+        if(tab[i] === ' ' || tab[i] === '"'|| tab[i] === '-' ){
+          tab[i] = " ";
+        }else{
+          tab[i] = ".";
+        }
+      }
+      setCountryNameTabRep(tab);
     } catch (error) {
       console.error('Error fetching flag:', error);
     }
@@ -45,17 +76,18 @@ function App() {
   return (
     <div className='flex flex-col items-center text-white'>
       {countryCode}
+      {currentLetter}
       <br></br>
       {countryName}
       {flagUrl && <Flag flagUrl={flagUrl} />}
       &nbsp;
       <div className='flex flex-wrap justify-center items-center gradient-border'>
         {
-          countryNameTab.map((letter, index) => {
+          countryNameTabRep.map((letter, index) => {
             let bg = letter === " " ? "#e6e6e6" : "#1D1F20"
             bg = index === currentLetter ? "#5015e1" : bg
             return (
-              <div key={index} style={{background:bg}} className='w-10 h-10 flex justify-center items-center text-white'>
+              <div key={index} style={{ background: bg }} className='w-10 h-10 flex justify-center items-center text-white'>
                 {letter !== " " && letter !== "-" && "."}
                 {letter === "-" && "-"}
               </div>
