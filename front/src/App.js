@@ -10,28 +10,31 @@ function App() {
   const [flagUrl, setFlagUrl] = useState("");
   const [countryName, setCountryName] = useState("");
   const [countryNameTab, setCountryNameTab] = useState([]);
+  const [currentLetter,setCurrentLetter] = useState(-1);
 
   useEffect(() => {
-    const countryData = async () => {
-      const seed = new Date().toLocaleDateString();
-      seedrandom(seed, { global: true }); // On initialise notre seed random ici c'est en fonction de la date
-      const randomNumber = getRandomInt(0, 249);  // On prend un nombre aleatoire entre 0 et 250
-      setCountryCode(json_country_code[randomNumber]);
-
-      try {
-        const response = await axios.get(`https://restcountries.com/v3.1/alpha/${json_country_code[randomNumber]}`);
-        console.log(response.data[0])
-        setFlagUrl(response.data[0].flags.png);
-        setCountryName(response.data[0].name.common)
-        let tab = response.data[0].name.common.split("")
-        setCountryNameTab(tab);
-      } catch (error) {
-        console.error('Error fetching flag:', error);
-      }
-    };
-
     countryData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const countryData = async () => {
+    const seed = new Date().toLocaleDateString();
+    seedrandom(seed, { global: true }); // On initialise notre seed random ici c'est en fonction de la date
+    const randomNumber = getRandomInt(0, 249);  // On prend un nombre aleatoire entre 0 et 249
+    setCountryCode(json_country_code[randomNumber]);
+
+    try {
+      const response = await axios.get(`https://restcountries.com/v3.1/alpha/${json_country_code[randomNumber]}`);
+      console.log(response.data[0])
+      setFlagUrl(response.data[0].flags.png);
+      setCountryName(response.data[0].name.common)
+      let tab = response.data[0].name.common.split("")
+      setCountryNameTab(tab);
+    } catch (error) {
+      console.error('Error fetching flag:', error);
+    }
+  };
+
 
   function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -45,13 +48,16 @@ function App() {
       <br></br>
       {countryName}
       {flagUrl && <Flag flagUrl={flagUrl} />}
-      <div className='flex flex-wrap justify-center items-center px-12'>
+      &nbsp;
+      <div className='flex flex-wrap justify-center items-center gradient-border'>
         {
           countryNameTab.map((letter, index) => {
             let bg = letter === " " ? "#e6e6e6" : "#1D1F20"
+            bg = index === currentLetter ? "#5015e1" : bg
             return (
-              <div key={index} style={{background:bg}} className='w-10 h-10 mt-1 gradient-border flex justify-center items-center text-white'>
-                {letter.toUpperCase()}
+              <div key={index} style={{background:bg}} className='w-10 h-10 flex justify-center items-center text-white'>
+                {letter !== " " && letter !== "-" && "."}
+                {letter === "-" && "-"}
               </div>
             )
           })
