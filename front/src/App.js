@@ -28,17 +28,27 @@ function App() {
 
   const keyListener = (event) => {
     let letter = currentLetter;
-    console.log(event.key)
+    let cloneCountryNameTab = Object.assign([], countryNameTab);
+    let cloneCountryNameTabRep = Object.assign([], countryNameTabRep);
+
     if (event.key === "Backspace") {
-      if (currentLetter > 0) {
-        letter = letter - 1
-        setCurrentLetter(letter);
+      if (letter >= 0) {
+        cloneCountryNameTabRep[letter] = ".";
+        if(letter !== 0){
+          letter = letter - 1;
+        }
       }
     } else if (/^[a-zA-Z]$/.test(event.key)) {
-      if (currentLetter < countryNameTab.length - 1) {
-        setCurrentLetter(prevLetter => prevLetter + 1);
+      if (letter < cloneCountryNameTab.length) {
+        cloneCountryNameTabRep[letter] = event.key.toUpperCase();
+        if(letter < cloneCountryNameTab.length-1){
+          letter = letter + 1;
+        }
       }
     }
+    setCurrentLetter(letter);
+    setCountryNameTab(cloneCountryNameTab);
+    setCountryNameTabRep(cloneCountryNameTabRep);
   };
 
   const countryData = async () => {
@@ -53,10 +63,10 @@ function App() {
       setCountryName(response.data[0].name.common)
       let tab = response.data[0].name.common.split("")
       setCountryNameTab(tab);
-      for (let i = 0; i < tab.length; i++){
-        if(tab[i] === ' ' || tab[i] === '"'|| tab[i] === '-' ){
+      for (let i = 0; i < tab.length; i++) {
+        if (tab[i] === ' ' || tab[i] === '"' || tab[i] === '-') {
           tab[i] = " ";
-        }else{
+        } else {
           tab[i] = ".";
         }
       }
@@ -88,7 +98,7 @@ function App() {
             bg = index === currentLetter ? "#5015e1" : bg
             return (
               <div key={index} style={{ background: bg }} className='w-10 h-10 flex justify-center items-center text-white'>
-                {letter !== " " && letter !== "-" && "."}
+                {letter !== " " && letter !== "-" && letter}
                 {letter === "-" && "-"}
               </div>
             )
