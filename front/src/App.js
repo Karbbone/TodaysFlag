@@ -3,6 +3,7 @@ import seedrandom from 'seedrandom';
 import json_country_code from './res/country_codes.json';
 import Flag from './components/Flag.js';
 import axios from 'axios';
+import 'animate.css'
 import './App.css';
 
 function App() {
@@ -44,6 +45,11 @@ function App() {
         cloneCountryNameTabRep[letter] = ".";
       }
     } else if (/^[a-zA-Z]$/.test(event.key)) {
+      const element = document.getElementById(letter);
+      element.classList.add('animate__animated', 'animate__zoomIn');
+      element.addEventListener('animationend', () => {
+        element.classList.remove('animate__animated', 'animate__zoomIn');
+      });
       cloneCountryNameTabRep[letter] = event.key.toUpperCase();
       if (cloneCountryNameTab[letter + 1] === " ") {
         letter = letter + 2;
@@ -69,7 +75,7 @@ function App() {
       let tab = response.data[0].name.common.split("")
       setCountryNameTab(tab);
       for (let i = 0; i < tab.length; i++) {
-        if (tab[i] === ' ' || tab[i] === '"' || tab[i] === '-'|| tab[i] === "'") {
+        if (tab[i] === ' ' || tab[i] === '"' || tab[i] === '-' || tab[i] === "'") {
           tab[i] = " ";
         } else {
           tab[i] = ".";
@@ -102,7 +108,7 @@ function App() {
             let bg = letter === " " ? "#e6e6e6" : "#1D1F20"
             bg = index === currentLetter ? "#5015e1" : bg
             return (
-              <div key={index} style={{ background: bg }} className='w-10 h-10 flex justify-center items-center text-white'>
+              <div id={index} key={index} style={{ background: bg }} className='w-10 h-10 flex justify-center items-center text-white'>
                 {letter !== " " && letter !== "-" && letter}
                 {letter === "-" && "-"}
               </div>
