@@ -33,17 +33,22 @@ function App() {
 
     if (event.key === "Backspace") {
       if (letter >= 1 && cloneCountryNameTabRep[letter] === ".") {
-        cloneCountryNameTabRep[letter - 1] = ".";
-        letter = letter - 1;
+        if (cloneCountryNameTab[letter - 1] === " ") {
+          cloneCountryNameTabRep[letter - 2] = ".";
+          letter = letter - 2;
+        } else {
+          cloneCountryNameTabRep[letter - 1] = ".";
+          letter = letter - 1;
+        }
       } else {
         cloneCountryNameTabRep[letter] = ".";
       }
     } else if (/^[a-zA-Z]$/.test(event.key)) {
-      if (letter < cloneCountryNameTab.length) {
-        cloneCountryNameTabRep[letter] = event.key.toUpperCase();
-        if (letter < cloneCountryNameTab.length - 1) {
-          letter = letter + 1;
-        }
+      cloneCountryNameTabRep[letter] = event.key.toUpperCase();
+      if (cloneCountryNameTab[letter + 1] === " ") {
+        letter = letter + 2;
+      } else if (letter < cloneCountryNameTab.length - 1) {
+        letter = letter + 1;
       }
     }
     setCurrentLetter(letter);
@@ -61,7 +66,8 @@ function App() {
       const response = await axios.get(`https://restcountries.com/v3.1/alpha/${json_country_code[randomNumber]}`);
       setFlagUrl(response.data[0].flags.png);
       setCountryName(response.data[0].name.common)
-      let tab = response.data[0].name.common.split("")
+      // let tab = response.data[0].name.common.split("")
+      let tab = ["F", "R", " ", "A", "N", "C", "E"]
       setCountryNameTab(tab);
       for (let i = 0; i < tab.length; i++) {
         if (tab[i] === ' ' || tab[i] === '"' || tab[i] === '-') {
