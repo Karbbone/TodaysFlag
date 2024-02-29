@@ -66,11 +66,10 @@ function App() {
       const response = await axios.get(`https://restcountries.com/v3.1/alpha/${json_country_code[randomNumber]}`);
       setFlagUrl(response.data[0].flags.png);
       setCountryName(response.data[0].name.common)
-      // let tab = response.data[0].name.common.split("")
-      let tab = ["F", "R", " ", "A", "N", "C", "E"]
+      let tab = response.data[0].name.common.split("")
       setCountryNameTab(tab);
       for (let i = 0; i < tab.length; i++) {
-        if (tab[i] === ' ' || tab[i] === '"' || tab[i] === '-') {
+        if (tab[i] === ' ' || tab[i] === '"' || tab[i] === '-'|| tab[i] === "'") {
           tab[i] = " ";
         } else {
           tab[i] = ".";
