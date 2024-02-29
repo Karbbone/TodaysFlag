@@ -32,16 +32,16 @@ function App() {
     let cloneCountryNameTabRep = Object.assign([], countryNameTabRep);
 
     if (event.key === "Backspace") {
-      if (letter >= 0) {
+      if (letter >= 1 && cloneCountryNameTabRep[letter] === ".") {
+        cloneCountryNameTabRep[letter - 1] = ".";
+        letter = letter - 1;
+      } else {
         cloneCountryNameTabRep[letter] = ".";
-        if(letter !== 0){
-          letter = letter - 1;
-        }
       }
     } else if (/^[a-zA-Z]$/.test(event.key)) {
       if (letter < cloneCountryNameTab.length) {
         cloneCountryNameTabRep[letter] = event.key.toUpperCase();
-        if(letter < cloneCountryNameTab.length-1){
+        if (letter < cloneCountryNameTab.length - 1) {
           letter = letter + 1;
         }
       }
