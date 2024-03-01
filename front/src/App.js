@@ -3,7 +3,6 @@ import seedrandom from 'seedrandom';
 import json_country_code from './res/country_codes.json';
 import Flag from './components/Flag.js';
 import axios from 'axios';
-import 'animate.css'
 import './App.css';
 
 function App() {
@@ -31,24 +30,38 @@ function App() {
     let letter = currentLetter;
     let cloneCountryNameTab = Object.assign([], countryNameTab);
     let cloneCountryNameTabRep = Object.assign([], countryNameTabRep);
-
+    let element = document.getElementById(letter);
     if (event.key === "Backspace") {
       if (letter >= 1 && cloneCountryNameTabRep[letter] === ".") {
         if (cloneCountryNameTab[letter - 1] === " ") {
+          element = document.getElementById(letter - 2);
+          element.style.animation = 'zoomOutAndIn 1s';
+          element.addEventListener('animationend', () => {
+            element.style.animation = 'none';
+          });
           cloneCountryNameTabRep[letter - 2] = ".";
           letter = letter - 2;
         } else {
+          let element = document.getElementById(letter- 1);
+          element.style.animation = 'zoomOutAndIn 1s';
+          element.addEventListener('animationend', () => {
+            element.style.animation = 'none';
+          });
           cloneCountryNameTabRep[letter - 1] = ".";
           letter = letter - 1;
         }
       } else {
+        element.style.animation = 'zoomOutAndIn 1s';
+        element.addEventListener('animationend', () => {
+          element.style.animation = 'none';
+        });
         cloneCountryNameTabRep[letter] = ".";
       }
     } else if (/^[a-zA-Z]$/.test(event.key)) {
-      const element = document.getElementById(letter);
-      element.classList.add('animate__animated', 'animate__zoomIn');
+      element = document.getElementById(letter);
+      element.style.animation = 'zoomIn 0.5s';
       element.addEventListener('animationend', () => {
-        element.classList.remove('animate__animated', 'animate__zoomIn');
+        element.style.animation = 'none';
       });
       cloneCountryNameTabRep[letter] = event.key.toUpperCase();
       if (cloneCountryNameTab[letter + 1] === " ") {
@@ -108,7 +121,7 @@ function App() {
             let bg = letter === " " ? "#e6e6e6" : "#1D1F20"
             bg = index === currentLetter ? "#5015e1" : bg
             return (
-              <div id={index} key={index} style={{ background: bg }} className='w-10 h-10 flex justify-center items-center text-white'>
+              <div id={index} key={index} style={{ background: bg }} className='writeSquare'>
                 {letter !== " " && letter !== "-" && letter}
                 {letter === "-" && "-"}
               </div>

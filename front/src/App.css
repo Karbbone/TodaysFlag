@@ -34,3 +34,34 @@ body{
 		background-position: 0% 50%;
 	}
 }
+
+.writeSquare {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  user-select: none;
+ }
+
+ 
+@keyframes zoomIn {
+  from{
+    font-size: 1px;
+  }to{
+    font-size: 13px;
+  }
+}
+
+@keyframes zoomOutAndIn {
+  0% {
+    font-size: 13px;
+ }
+  50% {
+    font-size: 0px;
+ }
+  100% {
+    font-size: 13px;
+ }
+}
