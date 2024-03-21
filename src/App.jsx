@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import seedrandom from 'seedrandom';
 import json_country_code from './res/country_codes.json';
-import Flag from './components/Flag.js';
-import WriteSystem from './components/WriteSystem.js';
+import Flag from './components/Flag.jsx';
+import WriteSystem from './components/WriteSystem.jsx';
 
 import axios from 'axios';
 import './App.css';
