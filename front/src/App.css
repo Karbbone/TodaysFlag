@@ -6,8 +6,8 @@ body{
   --borderWidth: 3px;
   background: #1D1F20;
   position: relative;
-  border-radius: var(--borderWidth);
 }
+
 .gradient-border:after {
   content: '';
   position: absolute;
@@ -33,4 +33,14 @@ body{
 	100% {
 		background-position: 0% 50%;
 	}
+}
+
+.writeSquare {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  user-select: none;
 }
