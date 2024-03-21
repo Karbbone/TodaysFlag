@@ -12,50 +12,34 @@ function WriteSystem(props) {
     }, [[], props.currentLetter]);
 
     const keyListener = (event) => {
+        let check = false;
         let letter = props.currentLetter;
         let cloneCountryNameTab = Object.assign([], props.countryNameTab);
         let cloneCountryNameTabRep = Object.assign([], props.countryNameTabRep);
-        let element = document.getElementById(letter);
         if (event.key === "Backspace") {
             if (letter >= 1 && cloneCountryNameTabRep[letter] === ".") {
                 if (cloneCountryNameTab[letter - 1] === " ") {
-                    element = document.getElementById(letter - 2);
-                    element.style.animation = 'zoomOutAndIn 1s';
-                    element.addEventListener('animationend', () => {
-                        element.style.animation = 'none';
-                    });
                     cloneCountryNameTabRep[letter - 2] = ".";
                     letter = letter - 2;
                 } else {
-                    let element = document.getElementById(letter - 1);
-                    element.style.animation = 'zoomOutAndIn 1s';
-                    element.addEventListener('animationend', () => {
-                        element.style.animation = 'none';
-                    });
                     cloneCountryNameTabRep[letter - 1] = ".";
                     letter = letter - 1;
                 }
             } else {
-                element.style.animation = 'zoomOutAndIn 1s';
-                element.addEventListener('animationend', () => {
-                    element.style.animation = 'none';
-                });
                 cloneCountryNameTabRep[letter] = ".";
             }
         } else if (/^[a-zA-Z]$/.test(event.key)) {
-            element = document.getElementById(letter);
-            element.style.animation = 'zoomIn 0.5s';
-            element.addEventListener('animationend', () => {
-                element.style.animation = 'none';
-            });
             cloneCountryNameTabRep[letter] = event.key.toUpperCase();
             if (cloneCountryNameTab[letter + 1] === " ") {
                 letter = letter + 2;
             } else if (letter < cloneCountryNameTab.length - 1) {
                 letter = letter + 1;
             }
+            if (letter >= cloneCountryNameTab.length - 1) {
+                check = cloneCountryNameTabRep.every((valeur, index) => valeur === props.countryName[index]);
+            }
         }
-        props.apply(cloneCountryNameTabRep, letter)
+        props.apply(cloneCountryNameTabRep, letter, check)
     };
     return (
         <div className='flex flex-wrap justify-center items-center gradient-border'>
@@ -64,7 +48,7 @@ function WriteSystem(props) {
                     let bg = letter === " " ? "#e6e6e6" : "#1D1F20"
                     bg = index === props.currentLetter ? "#5015e1" : bg
                     return (
-                        <div id={index} key={1} style={{ background: bg }} className='writeSquare'>
+                        <div id={index} style={{ backgroundColor: bg }} key={index} className='writeSquare'>
                             {letter !== " " && letter !== "-" && letter}
                             {letter === "-" && "-"}
                         </div>
@@ -76,8 +60,9 @@ function WriteSystem(props) {
 }
 WriteSystem.propTypes = {
     currentLetter: PropTypes.number.isRequired,
-    countryNameTab: PropTypes.object.isRequired,
-    countryNameTabRep: PropTypes.object.isRequired,
-    apply: PropTypes.func.isRequired
+    countryNameTab: PropTypes.array.isRequired,
+    countryNameTabRep: PropTypes.array.isRequired,
+    apply: PropTypes.func.isRequired,
+    countryName: PropTypes.string.isRequired
 };
 export default WriteSystem;

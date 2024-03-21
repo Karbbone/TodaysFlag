@@ -14,6 +14,7 @@ function App() {
   const [countryNameTab, setCountryNameTab] = useState([]);
   const [countryNameTabRep, setCountryNameTabRep] = useState([]);
   const [currentLetter, setCurrentLetter] = useState(0);
+  const [checkResponse, setCheckResponse] = useState(false);
 
   useEffect(() => {
     countryData();
@@ -28,7 +29,7 @@ function App() {
     try {
       const response = await axios.get(`https://restcountries.com/v3.1/alpha/${json_country_code[randomNumber]}`);
       setFlagUrl(response.data[0].flags.png);
-      setCountryName(response.data[0].name.common)
+      setCountryName(response.data[0].name.common.toUpperCase())
       let tab = response.data[0].name.common.split("")
       setCountryNameTab(tab);
       for (let i = 0; i < tab.length; i++) {
@@ -43,27 +44,28 @@ function App() {
       console.error('Error fetching flag:', error);
     }
   };
-  
+
   function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  const applyChangeWriteSystem = (countryNameTabRep,letter) => {
+  const applyChangeWriteSystem = (countryNameTabRep,letter,check) => {
     setCountryNameTabRep(countryNameTabRep);
     setCurrentLetter(letter);
+    setCheckResponse(check);
  };
 
   return (
     <div className='flex flex-col items-center text-white'>
       {countryCode}
       {currentLetter}
-      <br></br>
       {countryName}
+      {!checkResponse ? <p>Pas bon</p> : <p>BON</p>}
       {flagUrl && <Flag flagUrl={flagUrl} />}
       &nbsp;
-      <WriteSystem apply={applyChangeWriteSystem} currentLetter={currentLetter} countryNameTab={countryNameTab} countryNameTabRep={countryNameTabRep}/>
+      {checkResponse ? <p>BRAVO</p> : <WriteSystem countryName={countryName} apply={applyChangeWriteSystem} currentLetter={currentLetter} countryNameTab={countryNameTab} countryNameTabRep={countryNameTabRep}/> }
     </div>
   );
 }
