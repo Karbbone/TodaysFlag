@@ -1,7 +1,13 @@
-function Flag(props){
-    return(
+function Flag(props) {
+  return (
+    <div className="img">
+      <img
+        alt="Flag"
+        className="flag"
         // eslint-disable-next-line react/prop-types
-        <img alt='Flag' className="flag" style={{ height: "250px", width: "400px" }} src={props.flagUrl}></img>
-    )
+        src={props.flagUrl}
+      />
+    </div>
+  );
 }
 export default Flag;
