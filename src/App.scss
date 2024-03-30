@@ -54,6 +54,16 @@ body {
   user-select: none;
 }
 
-#img a {
-  display: inline-block;
+.img {
+  text-align: center;
+}
+
+.center {
+  text-align: center;
+}
+
+.writeDiv {
+  display: inline-flex; /* Affiche en ligne */
+  justify-content: center;
+  align-items: center;
 }

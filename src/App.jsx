@@ -5,7 +5,7 @@ import Flag from "./components/Flag.jsx";
 import WriteSystem from "./components/WriteSystem.jsx";
 
 import axios from "axios";
-import "./App.css";
+import "./App.scss";
 
 function App() {
   const [countryCode, setCountryCode] = useState("0");
@@ -65,19 +65,21 @@ function App() {
   };
 
   return (
-    <div className="">
+    <div>
       {flagUrl && <Flag flagUrl={flagUrl} />}
       &nbsp;
       {checkResponse ? (
-        <p>BRAVO</p>
+        <p>BRAVO {countryCode}</p>
       ) : (
-        <WriteSystem
-          countryName={countryName}
-          apply={applyChangeWriteSystem}
-          currentLetter={currentLetter}
-          countryNameTab={countryNameTab}
-          countryNameTabRep={countryNameTabRep}
-        />
+        <div className="center">
+          <WriteSystem
+            countryName={countryName}
+            apply={applyChangeWriteSystem}
+            currentLetter={currentLetter}
+            countryNameTab={countryNameTab}
+            countryNameTabRep={countryNameTabRep}
+          />
+        </div>
       )}
     </div>
   );
