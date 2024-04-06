@@ -1,0 +1,48 @@
+@import "font";
+
+$max-width: 1280px;
+
+/* Couleurs du projet */
+$color-black: black;
+$color-white: white;
+// Les autres couleurs
+$color-gray: #1d1f20;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: calc(1em * 0.625);
+  //scroll-behavior: smooth;
+}
+
+body {
+  height: 100%;
+
+  font: {
+    family: $family-default;
+    size: 1.6rem;
+    weight: 400; // regular
+  }
+
+  color: $color-black;
+  background-color: $color-gray;
+
+  //  Sticky footer
+  @media only screen and (max-width: 992px) {
+    display: flex;
+    flex-direction: column;
+
+    #content {
+      flex: 1 0 auto;
+    }
+    #footer {
+      flex-shrink: 0;
+    }
+  }
+
+  @import "common";
+  @import "content";
+}

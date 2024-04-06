@@ -3,7 +3,6 @@ function Flag(props) {
     <div className="img">
       <img
         alt="Flag"
-        className="flag"
         // eslint-disable-next-line react/prop-types
         src={props.flagUrl}
       />

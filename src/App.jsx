@@ -5,7 +5,8 @@ import Flag from "./components/Flag.jsx";
 import WriteSystem from "./components/WriteSystem.jsx";
 
 import axios from "axios";
-import "./App.scss";
+import "./scss/App.scss";
+import "normalize.css";
 
 function App() {
   const [countryCode, setCountryCode] = useState("0");
@@ -65,23 +66,32 @@ function App() {
   };
 
   return (
-    <div>
-      {flagUrl && <Flag flagUrl={flagUrl} />}
-      &nbsp;
-      {checkResponse ? (
-        <p>BRAVO {countryCode}</p>
-      ) : (
-        <div className="center">
-          <WriteSystem
-            countryName={countryName}
-            apply={applyChangeWriteSystem}
-            currentLetter={currentLetter}
-            countryNameTab={countryNameTab}
-            countryNameTabRep={countryNameTabRep}
-          />
-        </div>
-      )}
-    </div>
+    <>
+      <div id="content">
+        <header id="header"></header>
+        <main id="main">
+          <div id="flag-content">
+            <div className="wrapper">
+              <div className="center">
+                {flagUrl && <Flag flagUrl={flagUrl} />}
+                {checkResponse ? (
+                  <p>BRAVO {countryCode}</p>
+                ) : (
+                  <WriteSystem
+                    countryName={countryName}
+                    apply={applyChangeWriteSystem}
+                    currentLetter={currentLetter}
+                    countryNameTab={countryNameTab}
+                    countryNameTabRep={countryNameTabRep}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <footer id="footer"></footer>
+    </>
   );
 }
 
