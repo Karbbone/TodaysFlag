@@ -9,3 +9,12 @@
   padding-left: 2rem;
   padding-right: 2rem;
 }
+
+ul {
+  list-style-type: none;
+  display: flex;
+  color: white;
+  margin: 0;
+  gap: 2rem;
+  padding-left: 0;
+}

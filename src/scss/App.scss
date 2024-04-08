@@ -28,7 +28,7 @@ body {
   }
 
   color: $color-black;
-  background-color: $color-gray;
+  background-color: #faf1e4;
 
   //  Sticky footer
   @media only screen and (max-width: 992px) {
@@ -45,4 +45,5 @@ body {
 
   @import "common";
   @import "content";
+  @import "header";
 }

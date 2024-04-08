@@ -4,6 +4,7 @@ import json_country_code from "./res/country_codes.json";
 import Flag from "./components/Flag.jsx";
 import WriteSystem from "./components/WriteSystem.jsx";
 
+import logo from "./assets/logo.png";
 import axios from "axios";
 import "./scss/App.scss";
 import "normalize.css";
@@ -68,7 +69,34 @@ function App() {
   return (
     <>
       <div id="content">
-        <header id="header"></header>
+        <header id="header">
+          <div className="wrapper">
+            <div className="cols">
+              <div className="col-l">
+                <img src={logo} />
+              </div>
+              <nav className="col-m">
+                <ul>
+                  <li>
+                    <a>Exemple 1</a>
+                  </li>
+                  <li>
+                    <a>Exemple 2</a>
+                  </li>
+                  <li>
+                    <a>Exemple 3</a>
+                  </li>
+                </ul>
+              </nav>
+              <div className="col-r">
+                <img
+                  src="https://flagcdn.com/h40/gb.png"
+                  style={{ height: "30px", width: "42px" }}
+                />
+              </div>
+            </div>
+          </div>
+        </header>
         <main id="main">
           <div id="flag-content">
             <div className="wrapper">

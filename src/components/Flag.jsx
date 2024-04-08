@@ -1,6 +1,6 @@
 function Flag(props) {
   return (
-    <div className="img">
+    <div>
       <img
         alt="Flag"
         // eslint-disable-next-line react/prop-types

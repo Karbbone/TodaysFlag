@@ -46,8 +46,8 @@ function WriteSystem(props) {
   return (
     <div className="gradient-border writeDiv">
       {props.countryNameTabRep.map((letter, index) => {
-        let bg = letter === " " ? "#e6e6e6" : "#1D1F20";
-        bg = index === props.currentLetter ? "#5015e1" : bg;
+        let bg = letter === " " ? "#e6e6e6" : "#CEDEBD";
+        bg = index === props.currentLetter ? "#9EB384" : bg;
         return (
           <div
             id={index}
