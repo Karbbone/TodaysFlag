@@ -5,6 +5,7 @@ import Flag from "./components/Flag.jsx";
 import WriteSystem from "./components/WriteSystem.jsx";
 
 import logo from "./assets/logo.png";
+import githubLogo from "./assets/github-original.svg";
 import axios from "axios";
 import "./scss/App.scss";
 import "normalize.css";
@@ -141,7 +142,14 @@ function App() {
           </div>
         </main>
       </div>
-      <footer id="footer"></footer>
+      <footer id="footer">
+        <div className="flex flex-center">
+          <p>Made by Karbbone(Clément)</p>
+          <a href="https://github.com/Karbbone">
+            <img src={githubLogo} className="logo-github-footer" />
+          </a>
+        </div>
+      </footer>
     </>
   );
 }
