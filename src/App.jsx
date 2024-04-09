@@ -13,6 +13,7 @@ function App() {
   const [countryCode, setCountryCode] = useState("0");
   const [flagUrl, setFlagUrl] = useState("");
   const [countryName, setCountryName] = useState("");
+  const [langage, setLangage] = useState("");
   const [countryNameTab, setCountryNameTab] = useState([]);
   const [countryNameTabRep, setCountryNameTabRep] = useState([]);
   const [currentLetter, setCurrentLetter] = useState(0);
@@ -22,7 +23,7 @@ function App() {
     countryData();
   }, []);
 
-  const countryData = async () => {
+  const countryData = async (selectLangage) => {
     const seed = new Date().toLocaleDateString();
     seedrandom(seed, { global: true }); // On initialise notre seed random ici c'est en fonction de la date
     const randomNumber = getRandomInt(0, 249); // On prend un nombre aleatoire entre 0 et 249
@@ -32,10 +33,23 @@ function App() {
       const response = await axios.get(
         `https://restcountries.com/v3.1/alpha/${json_country_code[randomNumber]}`
       );
+      let tab;
+      switch (selectLangage) {
+        case "fra":
+          setCountryName(
+            response.data[0].translations.fra.common.toUpperCase()
+          );
+          tab = response.data[0].translations.fra.common.split("");
+          setCountryNameTab(tab);
+          console.log(response.data[0].translations.fra.common.toUpperCase());
+          break;
+        default:
+          setCountryName(response.data[0].name.common.toUpperCase());
+          tab = response.data[0].name.common.split("");
+          setCountryNameTab(tab);
+          console.log(response.data[0].name.common.toUpperCase());
+      }
       setFlagUrl(response.data[0].flags.png);
-      setCountryName(response.data[0].name.common.toUpperCase());
-      let tab = response.data[0].name.common.split("");
-      setCountryNameTab(tab);
       for (let i = 0; i < tab.length; i++) {
         if (
           tab[i] === " " ||
@@ -66,6 +80,12 @@ function App() {
     setCheckResponse(check);
   };
 
+  const onChangeLangage = async (e) => {
+    setLangage(e.target.value);
+    setCurrentLetter(0);
+    await countryData(e.target.value);
+  };
+
   return (
     <>
       <div id="content">
@@ -89,10 +109,14 @@ function App() {
                 </ul>
               </nav>
               <div className="col-r">
-                <img
-                  src="https://flagcdn.com/h40/gb.png"
-                  style={{ height: "30px", width: "42px" }}
-                />
+                <select
+                  onChange={(e) => onChangeLangage(e)}
+                  style={{ fontSize: "20px" }}
+                  name="countries"
+                >
+                  <option value="eng">🇬🇧</option>
+                  <option value="fra">🇫🇷</option>
+                </select>
               </div>
             </div>
           </div>
