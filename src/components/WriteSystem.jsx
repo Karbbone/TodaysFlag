@@ -86,15 +86,12 @@ function WriteSystem(props) {
 
   const handleChangeInputMobile = (e) => {
     let cloneInputMobile = Object.assign([], inputMobile);
-    console.log(e.target.value);
-    console.log(cloneInputMobile);
     let key;
     if (e.target.value.length > cloneInputMobile.length) {
       key = e.target.value.slice(-1);
     } else {
       key = "Backspace";
     }
-    console.log(key);
     handleOnChangeInputText(key);
     setInputMobile(e.target.value);
   };
