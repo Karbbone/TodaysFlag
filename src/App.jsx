@@ -9,16 +9,19 @@ import axios from "axios";
 import "./scss/App.scss";
 import "normalize.css";
 
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
+
 function App() {
-  const [countryCode, setCountryCode] = useState("0");
+  const [, setCountryCode] = useState("0");
   const [flagUrl, setFlagUrl] = useState("");
   const [countryName, setCountryName] = useState("");
-  const [langage, setLangage] = useState("");
+  const [, setLangage] = useState("");
   const [countryNameTab, setCountryNameTab] = useState([]);
   const [countryNameTabRep, setCountryNameTabRep] = useState([]);
   const [currentLetter, setCurrentLetter] = useState(0);
   const [checkResponse, setCheckResponse] = useState(false);
-
+  const { width, height } = useWindowSize();
   useEffect(() => {
     countryData();
   }, []);
@@ -96,17 +99,7 @@ function App() {
                 <img src={logo} />
               </div>
               <nav className="col-m">
-                <ul>
-                  <li>
-                    <a>Exemple 1</a>
-                  </li>
-                  <li>
-                    <a>Exemple 2</a>
-                  </li>
-                  <li>
-                    <a>Exemple 3</a>
-                  </li>
-                </ul>
+                <ul></ul>
               </nav>
               <div className="col-r">
                 <select
@@ -127,7 +120,15 @@ function App() {
               <div className="center">
                 {flagUrl && <Flag flagUrl={flagUrl} />}
                 {checkResponse ? (
-                  <p>BRAVO {countryCode}</p>
+                  <>
+                    <Confetti
+                      run={true}
+                      recycle={false}
+                      width={width}
+                      height={height}
+                    />
+                    <p>BRAVO</p>
+                  </>
                 ) : (
                   <WriteSystem
                     countryName={countryName}

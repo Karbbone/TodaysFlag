@@ -44,22 +44,24 @@ function WriteSystem(props) {
     props.apply(cloneCountryNameTabRep, letter, check);
   };
   return (
-    <div className="gradient-border writeDiv">
-      {props.countryNameTabRep.map((letter, index) => {
-        let bg = letter === " " ? "#e6e6e6" : "#CEDEBD";
-        bg = index === props.currentLetter ? "#9EB384" : bg;
-        return (
-          <div
-            id={index}
-            style={{ backgroundColor: bg }}
-            key={index}
-            className="writeSquare"
-          >
-            {letter !== " " && letter !== "-" && letter}
-            {letter === "-" && "-"}
-          </div>
-        );
-      })}
+    <div id="content-write">
+      <div className="gradient-border writeDiv">
+        {props.countryNameTabRep.map((letter, index) => {
+          let bg = letter === " " ? "#e6e6e6" : "#CEDEBD";
+          bg = index === props.currentLetter ? "#9EB384" : bg;
+          return (
+            <div
+              id={index}
+              style={{ backgroundColor: bg }}
+              key={index}
+              className="writeSquare"
+            >
+              {letter !== " " && letter !== "-" && letter}
+              {letter === "-" && "-"}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

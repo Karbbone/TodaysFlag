@@ -1,7 +1,18 @@
 main {
   &#main {
     div {
-      &#content {
+      &#flag-content {
+        padding-top: 2rem;
+      }
+      &#content-write {
+        padding-top: 2rem;
+      }
+      &.center {
+        padding: 3rem;
+        border: solid 0.5rem #9eb384;
+        border-radius: 2rem;
+        width: fit-content;
+        margin: 0 auto;
       }
     }
 
@@ -61,6 +72,7 @@ main {
       display: inline-flex;
       justify-content: center;
       align-items: center;
+      flex-wrap: wrap;
     }
   }
 }
