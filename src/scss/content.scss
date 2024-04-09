@@ -67,12 +67,17 @@ main {
       color: black;
       user-select: none;
     }
-
     .writeDiv {
       display: inline-flex;
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
+      caret-color: transparent;
+    }
+
+    .writeDiv:focus {
+      outline: none;
+      box-shadow: none;
     }
   }
 }

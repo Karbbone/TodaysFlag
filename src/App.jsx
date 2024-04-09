@@ -44,13 +44,11 @@ function App() {
           );
           tab = response.data[0].translations.fra.common.split("");
           setCountryNameTab(tab);
-          console.log(response.data[0].translations.fra.common.toUpperCase());
           break;
         default:
           setCountryName(response.data[0].name.common.toUpperCase());
           tab = response.data[0].name.common.split("");
           setCountryNameTab(tab);
-          console.log(response.data[0].name.common.toUpperCase());
       }
       setFlagUrl(response.data[0].flags.png);
       for (let i = 0; i < tab.length; i++) {

@@ -1,7 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
 function WriteSystem(props) {
+  const inputRef = useRef(null);
+  const [inputMobile, setInputMobile] = useState([]);
+
   useEffect(() => {
     window.addEventListener("keydown", keyListener);
 
@@ -43,9 +46,61 @@ function WriteSystem(props) {
     }
     props.apply(cloneCountryNameTabRep, letter, check);
   };
+
+  const handleDivClick = () => {
+    inputRef.current.focus();
+  };
+
+  const handleOnChangeInputText = (key) => {
+    let cloneCountryNameTab = Object.assign([], props.countryNameTab);
+    let cloneCountryNameTabRep = Object.assign([], props.countryNameTabRep);
+    let check = false;
+    let letter = props.currentLetter;
+    if (key === "Backspace") {
+      if (letter >= 1 && cloneCountryNameTabRep[letter] === ".") {
+        if (cloneCountryNameTab[letter - 1] === " ") {
+          cloneCountryNameTabRep[letter - 2] = ".";
+          letter = letter - 2;
+        } else {
+          cloneCountryNameTabRep[letter - 1] = ".";
+          letter = letter - 1;
+        }
+      } else {
+        cloneCountryNameTabRep[letter] = ".";
+      }
+    } else if (/^[a-zA-Z]$/.test(key)) {
+      cloneCountryNameTabRep[letter] = key.toUpperCase();
+      if (cloneCountryNameTab[letter + 1] === " ") {
+        letter = letter + 2;
+      } else if (letter < cloneCountryNameTab.length - 1) {
+        letter = letter + 1;
+      }
+      if (letter >= cloneCountryNameTab.length - 1) {
+        check = cloneCountryNameTabRep.every(
+          (valeur, index) => valeur === props.countryName[index]
+        );
+      }
+    }
+    props.apply(cloneCountryNameTabRep, letter, check);
+  };
+
+  const handleChangeInputMobile = (e) => {
+    let cloneInputMobile = Object.assign([], inputMobile);
+    console.log(e.target.value);
+    console.log(cloneInputMobile);
+    let key;
+    if (e.target.value.length > cloneInputMobile.length) {
+      key = e.target.value.slice(-1);
+    } else {
+      key = "Backspace";
+    }
+    console.log(key);
+    handleOnChangeInputText(key);
+    setInputMobile(e.target.value);
+  };
   return (
     <div id="content-write">
-      <div className="gradient-border writeDiv">
+      <div className="gradient-border writeDiv" onClick={handleDivClick}>
         {props.countryNameTabRep.map((letter, index) => {
           let bg = letter === " " ? "#e6e6e6" : "#CEDEBD";
           bg = index === props.currentLetter ? "#9EB384" : bg;
@@ -61,6 +116,12 @@ function WriteSystem(props) {
             </div>
           );
         })}
+        <input
+          type="text"
+          ref={inputRef}
+          style={{ display: "block", zIndex: -1, position: "absolute" }}
+          onChange={(e) => handleChangeInputMobile(e)}
+        />
       </div>
     </div>
   );
