@@ -32,7 +32,8 @@ function App() {
     seedrandom(seed, { global: true }); // On initialise notre seed random ici c'est en fonction de la date
     const randomNumber = getRandomInt(0, 249); // On prend un nombre aleatoire entre 0 et 249
     setCountryCode(json_country_code[randomNumber]);
-
+    const removeAccents = (str) =>
+      str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     try {
       const response = await axios.get(
         `https://restcountries.com/v3.1/alpha/${json_country_code[randomNumber]}`
@@ -41,13 +42,17 @@ function App() {
       switch (selectLangage) {
         case "fra":
           setCountryName(
-            response.data[0].translations.fra.common.toUpperCase()
+            removeAccents(
+              response.data[0].translations.fra.common.toUpperCase()
+            )
           );
           tab = response.data[0].translations.fra.common.split("");
           setCountryNameTab(tab);
           break;
         default:
-          setCountryName(response.data[0].name.common.toUpperCase());
+          setCountryName(
+            removeAccents(response.data[0].name.common.toUpperCase())
+          );
           tab = response.data[0].name.common.split("");
           setCountryNameTab(tab);
       }
