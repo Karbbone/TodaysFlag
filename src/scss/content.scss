@@ -8,6 +8,7 @@ main {
         padding-top: 2rem;
       }
       &.center {
+        background-color: #9eb384;
         padding: 3rem;
         border: solid 0.5rem #9eb384;
         border-radius: 2rem;
@@ -67,12 +68,13 @@ main {
       color: black;
       user-select: none;
     }
+
     .writeDiv {
+      position: relative;
       display: inline-flex;
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      caret-color: transparent;
     }
 
     .writeDiv:focus {

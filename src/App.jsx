@@ -24,7 +24,7 @@ function App() {
   const [checkResponse, setCheckResponse] = useState(false);
   const { width, height } = useWindowSize();
   useEffect(() => {
-    countryData();
+    countryData('fra');
   }, []);
 
   const countryData = async (selectLangage) => {
@@ -111,7 +111,6 @@ function App() {
                   style={{ fontSize: "20px" }}
                   name="countries"
                 >
-                  <option value="eng">🇬🇧</option>
                   <option value="fra">🇫🇷</option>
                 </select>
               </div>
