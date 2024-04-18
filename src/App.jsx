@@ -3,10 +3,10 @@ import seedrandom from "seedrandom";
 import json_country_code from "./res/country_codes.json";
 import Flag from "./components/Flag.jsx";
 import WriteSystem from "./components/WriteSystem.jsx";
-
 import logo from "./assets/logo.png";
 import githubLogo from "./assets/github-original.svg";
 import axios from "axios";
+import Select from "react-select";
 import "./scss/App.scss";
 import "normalize.css";
 
@@ -24,7 +24,7 @@ function App() {
   const [checkResponse, setCheckResponse] = useState(false);
   const { width, height } = useWindowSize();
   useEffect(() => {
-    countryData('fra');
+    countryData("fra");
   }, []);
 
   const countryData = async (selectLangage) => {
@@ -87,10 +87,44 @@ function App() {
     setCheckResponse(check);
   };
 
-  const onChangeLangage = async (e) => {
-    setLangage(e.target.value);
-    setCurrentLetter(0);
-    await countryData(e.target.value);
+  const options = [
+    { value: "fra", image: "https://flagsapi.com/FR/flat/32.png" },
+    { value: "en", image: "https://flagsapi.com/GB/flat/32.png" },
+  ];
+
+  const onChangeLangage = async (selectedOption) => {
+    if (selectedOption) {
+      setLangage(selectedOption.value);
+      setCurrentLetter(0);
+      await countryData(selectedOption.value);
+    }
+  };
+
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      borderRadius: "8px",
+      minHeight: "unset",
+      height: "40px",
+      width: "fit-content",
+      boxShadow: state.isFocused ? "0 0 0 1px #00ad9f" : "none",
+    }),
+    indicatorSeparator: () => ({}),
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      color: "#00ad9f",
+      transition: "transform 0.3s",
+      transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : null,
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? "#00a2b1" : null, // Couleur de fond au survol
+      color: state.isSelected ? "#fff" : "#000", // Couleur du texte de l'option sélectionnée
+      "&:hover": {
+        backgroundColor: "#00ad9f", // Couleur de fond au survol
+        // Ajoutez d'autres styles de survol si nécessaire
+      },
+    }),
   };
 
   return (
@@ -100,19 +134,29 @@ function App() {
           <div className="wrapper">
             <div className="cols">
               <div className="col-l">
-                <img src={logo} />
+                <img className="logoHeader" src={logo}></img>
               </div>
               <nav className="col-m">
-                <ul></ul>
+                <ul>
+                  <li>Drapeau</li>
+                  <li className="inactive">Capitale</li>
+                  <li className="inactive">Course 60s</li>
+                </ul>
               </nav>
               <div className="col-r">
-                <select
-                  onChange={(e) => onChangeLangage(e)}
-                  style={{ fontSize: "20px" }}
-                  name="countries"
-                >
-                  <option value="fra">🇫🇷</option>
-                </select>
+                <Select
+                  isSearchable={false}
+                  styles={customStyles}
+                  options={options}
+                  onChange={onChangeLangage}
+                  defaultValue={options[0]}
+                  formatOptionLabel={(country) => (
+                    <div className="countries-select">
+                      <img src={country.image} alt="country-image" />
+                    </div>
+                  )}
+                  placeholder="Langue"
+                />
               </div>
             </div>
           </div>
@@ -120,6 +164,7 @@ function App() {
         <main id="main">
           <div id="flag-content">
             <div className="wrapper">
+              <h1>TODAY&apos;S FLAG</h1>
               <div className="center">
                 {flagUrl && <Flag flagUrl={flagUrl} />}
                 {checkResponse ? (
@@ -144,6 +189,7 @@ function App() {
               </div>
             </div>
           </div>
+          <div></div>
         </main>
       </div>
       <footer id="footer">

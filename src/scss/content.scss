@@ -1,9 +1,19 @@
 main {
   &#main {
+    h1 {
+      text-align: center;
+      font-size: 42px;
+      background: linear-gradient(
+        to top left,
+        rgba(0, 195, 127, 1) 0%,
+        rgba(0, 159, 180, 1) 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
     div {
-      &#flag-content {
-        padding-top: 2rem;
-      }
       &#content-write {
         padding-top: 2rem;
       }
@@ -17,7 +27,7 @@ main {
         padding: 3rem;
         border: solid 2px #01188c;
         border-radius: 2rem;
-        width: fit-content;
+        width: 70%;
         margin: 0 auto;
       }
     }

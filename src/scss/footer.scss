@@ -1,5 +1,5 @@
 [id="footer"] {
-  background-color: #050c10;
+  background-color: #0a0f21;
   position: fixed;
   width: 100%;
   bottom: 0;
@@ -8,5 +8,7 @@
     height: 35px;
     width: 35px;
     margin-left: 15px;
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(0deg)
+      brightness(100%) contrast(100%);
   }
 }
