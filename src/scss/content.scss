@@ -8,9 +8,14 @@ main {
         padding-top: 2rem;
       }
       &.center {
-        background-color: #9eb384;
+        background: rgb(2, 0, 36);
+        background: linear-gradient(
+          to top left,
+          rgba(0, 195, 127, 1) 0%,
+          rgba(0, 159, 180, 1) 100%
+        );
         padding: 3rem;
-        border: solid 0.5rem #9eb384;
+        border: solid 2px #01188c;
         border-radius: 2rem;
         width: fit-content;
         margin: 0 auto;
@@ -65,7 +70,7 @@ main {
       display: flex;
       justify-content: center;
       align-items: center;
-      color: black;
+      color: white;
       user-select: none;
     }
 
