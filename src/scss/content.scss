@@ -26,9 +26,25 @@ main {
         );
         padding: 3rem;
         border: solid 2px #01188c;
-        border-radius: 2rem;
-        width: 70%;
         margin: 0 auto;
+        .clues {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+          margin-top: 20px;
+          .clue {
+            background-color: #001f3f;
+            color: white;
+            height: 50px;
+            width: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            cursor: pointer;
+          }
+        }
       }
     }
 

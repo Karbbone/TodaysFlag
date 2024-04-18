@@ -163,9 +163,9 @@ function App() {
         </header>
         <main id="main">
           <div id="flag-content">
-            <div className="wrapper">
-              <h1>TODAY&apos;S FLAG</h1>
-              <div className="center">
+            <h1>TODAY&apos;S FLAG</h1>
+            <div className="center">
+              <div className="wrapper">
                 {flagUrl && <Flag flagUrl={flagUrl} />}
                 {checkResponse ? (
                   <>
@@ -178,13 +178,19 @@ function App() {
                     <p>BRAVO</p>
                   </>
                 ) : (
-                  <WriteSystem
-                    countryName={countryName}
-                    apply={applyChangeWriteSystem}
-                    currentLetter={currentLetter}
-                    countryNameTab={countryNameTab}
-                    countryNameTabRep={countryNameTabRep}
-                  />
+                  <>
+                    <div className="clues">
+                      <div className="clue"> Indice 1</div>
+                      <div className="clue"> Indice 2</div>
+                    </div>
+                    <WriteSystem
+                      countryName={countryName}
+                      apply={applyChangeWriteSystem}
+                      currentLetter={currentLetter}
+                      countryNameTab={countryNameTab}
+                      countryNameTabRep={countryNameTabRep}
+                    />
+                  </>
                 )}
               </div>
             </div>
