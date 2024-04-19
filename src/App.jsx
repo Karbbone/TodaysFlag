@@ -163,35 +163,47 @@ function App() {
         </header>
         <main id="main">
           <div id="flag-content">
-            <h1>TODAY&apos;S FLAG</h1>
             <div className="center">
               <div className="wrapper">
-                {flagUrl && <Flag flagUrl={flagUrl} />}
-                {checkResponse ? (
-                  <>
-                    <Confetti
-                      run={true}
-                      recycle={false}
-                      width={width}
-                      height={height}
-                    />
-                    <p>BRAVO</p>
-                  </>
-                ) : (
-                  <>
-                    <div className="clues">
-                      <div className="clue"> Indice 1</div>
-                      <div className="clue"> Indice 2</div>
-                    </div>
-                    <WriteSystem
-                      countryName={countryName}
-                      apply={applyChangeWriteSystem}
-                      currentLetter={currentLetter}
-                      countryNameTab={countryNameTab}
-                      countryNameTabRep={countryNameTabRep}
-                    />
-                  </>
-                )}
+                <h1>TODAY&apos;S FLAG</h1>
+                <div id="main-content">
+                  {flagUrl && <Flag flagUrl={flagUrl} />}
+                  {checkResponse ? (
+                    <>
+                      <Confetti
+                        run={true}
+                        recycle={false}
+                        width={width}
+                        height={height}
+                      />
+                      <p>BRAVO</p>
+                    </>
+                  ) : (
+                    <>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <div className="clues">
+                          <div className="clue"> Indice 1</div>
+                          <div className="clue"> Indice 2</div>
+                        </div>
+                        <div className="separator"></div>
+                      </div>
+                      <WriteSystem
+                        countryName={countryName}
+                        apply={applyChangeWriteSystem}
+                        currentLetter={currentLetter}
+                        countryNameTab={countryNameTab}
+                        countryNameTabRep={countryNameTabRep}
+                      />
+                    </>
+                  )}
+                </div>
               </div>
             </div>
           </div>

@@ -100,7 +100,7 @@ function WriteSystem(props) {
       <div className="writeDiv" onClick={handleDivClick}>
         {props.countryNameTabRep.map((letter, index) => {
           let bg = letter === " " ? "#ffffff" : "#153a51";
-          bg = index === props.currentLetter ? "#000000" : bg;
+          bg = index === props.currentLetter ? "#2e8ce9" : bg;
           return (
             <div
               id={index}
