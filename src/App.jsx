@@ -201,6 +201,10 @@ function App() {
                         countryNameTab={countryNameTab}
                         countryNameTabRep={countryNameTabRep}
                       />
+                      <p className="italic">
+                        Ecrire la reponse, en écrivant sur votre clavier ou sur
+                        téléphone en tapotant sur les cases
+                      </p>
                     </>
                   )}
                 </div>
