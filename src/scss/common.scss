@@ -1,6 +1,7 @@
 h1,
 h2,
-p {
+p,
+label {
   color: white;
 }
 
@@ -30,15 +31,20 @@ ul {
   cursor: pointer;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   padding-top: 10px;
 }
 
 .separator {
   height: 1px;
-  background-color: #4e5155;
-  width: 300px;
+  background-color: #524d4d;
+  width: 80%;
 }
 
 .italic {
