@@ -162,7 +162,6 @@ function App() {
           </div>
         </header>
         <main id="main">
-          <Legend />
           <div id="flag-content">
             <div className="center">
               <div className="wrapper">
@@ -195,6 +194,7 @@ function App() {
                         </div>
                         <div className="separator"></div>
                       </div>
+                      <Legend />
                       <WriteSystem
                         countryName={countryName}
                         apply={applyChangeWriteSystem}

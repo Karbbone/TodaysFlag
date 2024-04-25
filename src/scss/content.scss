@@ -9,23 +9,47 @@ main {
     div {
       &#content-legend {
         background-color: #1c223a;
-        border: 2px solid #4e5155;
         position: fixed;
-        right: 150px;
+        right: 10vw;
         top: 200px;
         width: 200px;
         padding: 4px 20px;
         border-radius: 5px;
+        @media screen and (max-width: 1024px) {
+          right: 5vw;
+        }
+        @media screen and (max-width: 768px) {
+          position: static;
+          display: flex;
+          width: fit-content;
+          right: initial;
+          top: initial;
+          padding: 2px 5px;
+          margin: auto;
+          margin-top: 3px;
+        }
+        .title-legend {
+          @media screen and (max-width: 768px) {
+            display: none;
+          }
+        }
         .row-legend {
           display: flex;
-          margin-bottom: 15px;
           align-items: center;
           margin: 10px;
+
+          @media screen and (max-width: 768px) {
+            margin: 5px;
+          }
           .square-legend {
             min-height: 30px;
             min-width: 30px;
             margin-right: 20px;
             border: white solid 1px;
+
+            @media screen and (max-width: 768px) {
+              margin-right: 10px;
+            }
           }
           .current {
             background-color: #2e8ce9;
