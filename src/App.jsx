@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import seedrandom from "seedrandom";
 import json_country_code from "./res/country_codes.json";
-import Flag from "./components/Flag.jsx";
-import WriteSystem from "./components/WriteSystem.jsx";
-import Legend from "./components/Legend.jsx";
-import logo from "./assets/logo.png";
-import githubLogo from "./assets/github-original.svg";
+import Flag from "./components/Flag/Flag.jsx";
+import WriteSystem from "./components/WriteSystem/WriteSystem.jsx";
+import Legend from "./components/Legend/Legend.jsx";
 import axios from "axios";
-import Select from "react-select";
+import Header from "./components/Header/Header.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 import "./scss/App.scss";
 import "normalize.css";
 
@@ -18,17 +17,18 @@ function App() {
   const [, setCountryCode] = useState("0");
   const [flagUrl, setFlagUrl] = useState("");
   const [countryName, setCountryName] = useState("");
-  const [, setLangage] = useState("");
   const [countryNameTab, setCountryNameTab] = useState([]);
   const [countryNameTabRep, setCountryNameTabRep] = useState([]);
   const [currentLetter, setCurrentLetter] = useState(0);
   const [checkResponse, setCheckResponse] = useState(false);
   const { width, height } = useWindowSize();
+
   useEffect(() => {
     countryData("fra");
   }, []);
 
   const countryData = async (selectLangage) => {
+    setCurrentLetter(0);
     const seed = new Date().toLocaleDateString();
     seedrandom(seed, { global: true }); // On initialise notre seed random ici c'est en fonction de la date
     const randomNumber = getRandomInt(0, 249); // On prend un nombre aleatoire entre 0 et 249
@@ -88,84 +88,14 @@ function App() {
     setCheckResponse(check);
   };
 
-  const options = [
-    { value: "fra", image: "https://flagsapi.com/FR/flat/32.png" },
-    { value: "en", image: "https://flagsapi.com/GB/flat/32.png" },
-  ];
-
-  const onChangeLangage = async (selectedOption) => {
-    if (selectedOption) {
-      setLangage(selectedOption.value);
-      setCurrentLetter(0);
-      await countryData(selectedOption.value);
-    }
-  };
-
-  const customStyles = {
-    control: (provided, state) => ({
-      ...provided,
-      borderRadius: "8px",
-      minHeight: "unset",
-      height: "40px",
-      width: "fit-content",
-      boxShadow: state.isFocused ? "0 0 0 1px #00ad9f" : "none",
-    }),
-    indicatorSeparator: () => ({}),
-    dropdownIndicator: (provided, state) => ({
-      ...provided,
-      color: "#00ad9f",
-      transition: "transform 0.3s",
-      transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : null,
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? "#00a2b1" : null, // Couleur de fond au survol
-      color: state.isSelected ? "#fff" : "#000", // Couleur du texte de l'option sélectionnée
-      "&:hover": {
-        backgroundColor: "#00ad9f", // Couleur de fond au survol
-      },
-    }),
-  };
-
   return (
     <>
       <div id="content">
-        <header id="header">
-          <div className="wrapper">
-            <div className="cols">
-              <div className="col-l">
-                <img className="logoHeader" src={logo}></img>
-              </div>
-              <nav className="col-m">
-                <ul>
-                  <li>Drapeau</li>
-                  <li className="inactive">Capitale</li>
-                  <li className="inactive">Course 60s</li>
-                </ul>
-              </nav>
-              <div className="col-r">
-                <Select
-                  isSearchable={false}
-                  styles={customStyles}
-                  options={options}
-                  onChange={onChangeLangage}
-                  defaultValue={options[0]}
-                  formatOptionLabel={(country) => (
-                    <div className="countries-select">
-                      <img src={country.image} alt="country-image" />
-                    </div>
-                  )}
-                  placeholder="Langue"
-                />
-              </div>
-            </div>
-          </div>
-        </header>
+        <Header countryData={countryData} />
         <main id="main">
           <div id="flag-content">
             <div className="center">
               <div className="wrapper">
-                <h1>TODAY&apos;S FLAG</h1>
                 <div id="main-content">
                   {flagUrl && <Flag flagUrl={flagUrl} />}
                   {checkResponse ? (
@@ -212,17 +142,9 @@ function App() {
               </div>
             </div>
           </div>
-          <div></div>
         </main>
       </div>
-      <footer id="footer">
-        <div className="flex flex-center">
-          <p>Made by Karbbone(Clément)</p>
-          <a href="https://github.com/Karbbone">
-            <img src={githubLogo} className="logo-github-footer" />
-          </a>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

@@ -45,7 +45,7 @@ body {
 
   @import "common";
   @import "content";
-  @import "header";
-  @import "footer";
-  @import "flag";
+  @import "../components/Header/header.scss";
+  @import "../components/Footer/footer.scss";
+  @import "../components/Flag/flag.scss";
 }
