@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
+
+import "./scss/App.scss";
+import "normalize.css";
 import seedrandom from "seedrandom";
 import json_country_code from "./res/country_codes.json";
+
 import Flag from "./components/Flag/Flag.jsx";
 import WriteSystem from "./components/WriteSystem/WriteSystem.jsx";
 import Legend from "./components/Legend/Legend.jsx";
 import axios from "axios";
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-import "./scss/App.scss";
-import "normalize.css";
-
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
 
