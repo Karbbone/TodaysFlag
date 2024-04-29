@@ -20,7 +20,6 @@ html {
 
 body {
   height: 100%;
-
   font: {
     family: $family-default;
     size: 1.6rem;
@@ -48,4 +47,5 @@ body {
   @import "../components/Header/header.scss";
   @import "../components/Footer/footer.scss";
   @import "../components/Flag/flag.scss";
+  @import "../components/DecorativeFlag/decorativeFlag.scss";
 }

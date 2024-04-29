@@ -13,6 +13,7 @@ import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
+import DecoraitveFlagGroup from "./components/DecorativeFlagGroup/DecoraitveFlagGroup.jsx";
 
 function App() {
   const [, setCountryCode] = useState("0");
@@ -91,6 +92,7 @@ function App() {
 
   return (
     <>
+      <DecoraitveFlagGroup />
       <div id="content">
         <Header countryData={countryData} />
         <main id="main">
