@@ -7,6 +7,7 @@ function Flag(props) {
 
   useEffect(() => {
     const img = new Image();
+    img.crossOrigin = "Anonymous";
     img.src = props.flagUrl;
 
     img.onload = () => {
