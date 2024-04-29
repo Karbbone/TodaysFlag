@@ -3,6 +3,7 @@ import seedrandom from "seedrandom";
 import json_country_code from "./res/country_codes.json";
 import Flag from "./components/Flag.jsx";
 import WriteSystem from "./components/WriteSystem.jsx";
+import Legend from "./components/Legend.jsx";
 import logo from "./assets/logo.png";
 import githubLogo from "./assets/github-original.svg";
 import axios from "axios";
@@ -122,7 +123,6 @@ function App() {
       color: state.isSelected ? "#fff" : "#000", // Couleur du texte de l'option sélectionnée
       "&:hover": {
         backgroundColor: "#00ad9f", // Couleur de fond au survol
-        // Ajoutez d'autres styles de survol si nécessaire
       },
     }),
   };
@@ -194,6 +194,7 @@ function App() {
                         </div>
                         <div className="separator"></div>
                       </div>
+                      <Legend />
                       <WriteSystem
                         countryName={countryName}
                         apply={applyChangeWriteSystem}
