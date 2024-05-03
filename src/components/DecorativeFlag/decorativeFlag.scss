@@ -1,7 +1,8 @@
 .rotated-image {
   transform: rotate(-45deg);
-  animation: moveUpAndDown 3s ease-in-out infinite;
   opacity: 85%;
+  height: 70px;
+  width: 100px;
 }
 .d-flag-1 {
   height: 70px;
