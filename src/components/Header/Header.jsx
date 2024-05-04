@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import logo from "../../assets/logo.png";
 import Select from "react-select";
-import PropTypes from "prop-types";
 import { LanguageContext } from "../../context/LanguageContext";
 
 function Header() {
@@ -77,7 +76,4 @@ function Header() {
     </header>
   );
 }
-Header.propTypes = {
-  countryData: PropTypes.func.isRequired,
-};
 export default Header;

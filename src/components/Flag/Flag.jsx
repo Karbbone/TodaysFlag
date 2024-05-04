@@ -12,7 +12,7 @@ function Flag(props) {
 
     img.onload = () => {
       const canvas = canvasRef.current;
-      const context = canvas.getContext("2d");
+      const context = canvas.getContext("2d", { willReadFrequently: true });
       context.drawImage(img, 0, 0, canvas.width, canvas.height);
       const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
       const dominantColor = getDominantColor(imageData);

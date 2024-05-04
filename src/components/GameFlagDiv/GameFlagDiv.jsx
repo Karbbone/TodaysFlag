@@ -21,32 +21,32 @@ function GameFlagDiv() {
   const { width, height } = useWindowSize();
   useEffect(() => {
     const countryData = async (selectLangage) => {
-      console.log(selectLangage);
       setCurrentLetter(0);
       const seed = new Date().toLocaleDateString();
       seedrandom(seed, { global: true }); // On initialise notre seed random ici c'est en fonction de la date
       const randomNumber = getRandomInt(0, 249); // On prend un nombre aleatoire entre 0 et 249
       setCountryCode(json_country_code[randomNumber]);
-      const removeAccents = (str) =>
-        str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const clearName = (str) => {
+        str = str.replace(/ *\([^)]*\) */g, "");
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      };
       try {
         const response = await axios.get(
           `https://restcountries.com/v3.1/alpha/${json_country_code[randomNumber]}`
         );
         let tab;
+        let cleanName = clearName(
+          response.data[0].translations.fra.common.toUpperCase()
+        );
         switch (selectLangage) {
           case "fra":
-            setCountryName(
-              removeAccents(
-                response.data[0].translations.fra.common.toUpperCase()
-              )
-            );
-            tab = response.data[0].translations.fra.common.split("");
+            setCountryName(cleanName);
+            tab = cleanName.split("");
             setCountryNameTab(tab);
             break;
           default:
             setCountryName(
-              removeAccents(response.data[0].name.common.toUpperCase())
+              clearName(response.data[0].name.common.toUpperCase())
             );
             tab = response.data[0].name.common.split("");
             setCountryNameTab(tab);
@@ -112,8 +112,8 @@ function GameFlagDiv() {
                   }}
                 >
                   <div className="clues">
-                    <div className="clue"> Indice 1</div>
-                    <div className="clue"> Indice 2</div>
+                    <div className="clue">💡1</div>
+                    <div className="clue">💡2</div>
                   </div>
                   <div className="separator"></div>
                 </div>

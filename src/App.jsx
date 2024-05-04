@@ -3,7 +3,7 @@ import "./scss/App.scss";
 import "normalize.css";
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-import DecoraitveFlagGroup from "./components/DecorativeFlagGroup/DecoraitveFlagGroup.jsx";
+import DecoraitveFlagGroup from "./components/DecorativeFlagGroup/DecorativeFlagGroup.jsx";
 import GameFlagDiv from "./components/GameFlagDiv/GameFlagDiv.jsx";
 import { LanguageContext } from "./context/LanguageContext";
 
