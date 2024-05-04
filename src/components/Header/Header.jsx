@@ -1,20 +1,19 @@
-import { useState } from "react";
+import { useContext } from "react";
 import logo from "../../assets/logo.png";
 import Select from "react-select";
-import PropTypes from "prop-types";
+import { LanguageContext } from "../../context/LanguageContext";
 
-function Header(props) {
-  const [, setLangage] = useState("");
+function Header() {
+  const { setLanguage } = useContext(LanguageContext);
 
   const options = [
     { value: "fra", image: "https://flagsapi.com/FR/flat/32.png" },
     { value: "en", image: "https://flagsapi.com/GB/flat/32.png" },
   ];
 
-  const onChangeLangage = async (selectedOption) => {
+  const onChangeLangage = (selectedOption) => {
     if (selectedOption) {
-      setLangage(selectedOption.value);
-      await props.countryData(selectedOption.value);
+      setLanguage(selectedOption.value);
     }
   };
 
@@ -77,7 +76,4 @@ function Header(props) {
     </header>
   );
 }
-Header.propTypes = {
-  countryData: PropTypes.func.isRequired,
-};
 export default Header;

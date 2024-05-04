@@ -1,0 +1,31 @@
+.rotated-image {
+  transform: rotate(-45deg);
+  opacity: 85%;
+  height: 70px;
+  width: 100px;
+}
+.d-flag-1 {
+  height: 70px;
+  transform: rotate(25deg);
+}
+.d-flag-2 {
+  height: 70px;
+  transform: rotate(-25deg);
+}
+
+.divDecorativeFlag-left {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  gap: 130px;
+  left: 5vw;
+  top: 120px;
+}
+.divDecorativeFlag-right {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  gap: 130px;
+  right: 5vw;
+  top: 120px;
+}
