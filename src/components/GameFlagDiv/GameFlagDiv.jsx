@@ -23,7 +23,7 @@ function GameFlagDiv() {
     const countryData = async (selectLangage) => {
       setCurrentLetter(0);
       const response = await axios.get(
-        "http://worldtimeapi.org/api/timezone/Europe/Paris"
+        "https://worldtimeapi.org/api/timezone/Europe/Paris"
       );
       const dateTime = response.data.datetime;
       const datePart = dateTime.slice(0, 10);
