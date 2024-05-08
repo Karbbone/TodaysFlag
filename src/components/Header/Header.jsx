@@ -51,9 +51,15 @@ function Header() {
           </div>
           <nav className="col-m">
             <ul>
-              <li>Drapeau</li>
-              <li className="inactive">Capitale</li>
-              <li className="inactive">Course 60s</li>
+              <li>
+                <a>Drapeau</a>
+              </li>
+              <li className="inactive">
+                <a>Capitale</a>
+              </li>
+              <li className="inactive">
+                <a>Course 60s</a>
+              </li>
             </ul>
           </nav>
           <div className="col-r">
