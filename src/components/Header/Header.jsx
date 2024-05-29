@@ -1,21 +1,10 @@
-import { useContext } from "react";
 import logo from "../../assets/logo.png";
 import Select from "react-select";
-import { LanguageContext } from "../../context/LanguageContext";
 
 function Header() {
-  const { setLanguage } = useContext(LanguageContext);
-
   const options = [
     { value: "fra", image: "https://flagsapi.com/FR/flat/32.png" },
-    { value: "en", image: "https://flagsapi.com/GB/flat/32.png" },
   ];
-
-  const onChangeLangage = (selectedOption) => {
-    if (selectedOption) {
-      setLanguage(selectedOption.value);
-    }
-  };
 
   const customStyles = {
     control: (provided, state) => ({
@@ -42,6 +31,7 @@ function Header() {
       },
     }),
   };
+
   return (
     <header id="header">
       <div className="wrapper">
@@ -67,7 +57,6 @@ function Header() {
               isSearchable={false}
               styles={customStyles}
               options={options}
-              onChange={onChangeLangage}
               defaultValue={options[0]}
               formatOptionLabel={(country) => (
                 <div className="countries-select">
