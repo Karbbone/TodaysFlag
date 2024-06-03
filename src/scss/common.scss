@@ -1,7 +1,8 @@
 h1,
 h2,
 p,
-label {
+label,
+em {
   color: white;
 }
 
@@ -44,12 +45,14 @@ a {
   cursor: pointer;
 }
 
-.separator {
-  height: 1px;
-  background-color: #524d4d;
-  width: 100%;
-}
-
 .italic {
   font-style: italic;
+}
+// <i> </i> <em> </em>
+// <b> </b> <strong> </strong>
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
 }

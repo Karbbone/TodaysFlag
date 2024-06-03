@@ -12,20 +12,14 @@ main {
         @media screen and (max-width: 1024px) {
           right: 5vw;
         }
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 820px) {
           position: static;
-          display: flex;
           width: fit-content;
           right: initial;
           top: initial;
           padding: 2px 5px;
           margin: auto;
           margin-top: 3px;
-        }
-        .title-legend {
-          @media screen and (max-width: 768px) {
-            display: none;
-          }
         }
         .row-legend {
           display: flex;
@@ -58,9 +52,11 @@ main {
       }
       &#main-content {
         padding: 30px 0px;
+        position: relative;
       }
       &#content-write {
         padding-top: 2rem;
+        padding-bottom: 2rem;
       }
       &.center {
         background-color: #090b12;

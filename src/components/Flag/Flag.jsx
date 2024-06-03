@@ -29,14 +29,16 @@ function Flag(props) {
     : "";
 
   return (
-    <div>
-      <canvas
-        ref={canvasRef}
-        width={100}
-        height={100}
-        style={{ display: "none" }}
-      />
-      <img id="flag" alt="Flag" src={props.flagUrl} style={{ boxShadow }} />
+    <div style={{ width: "100%" }}>
+      <div style={{ width: "50%", margin: "auto" }}>
+        <canvas
+          ref={canvasRef}
+          width={100}
+          height={100}
+          style={{ display: "none" }}
+        />
+        <img id="flag" alt="Flag" src={props.flagUrl} style={{ boxShadow }} />
+      </div>
     </div>
   );
 }

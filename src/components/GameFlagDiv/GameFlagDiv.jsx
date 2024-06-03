@@ -60,9 +60,7 @@ function GameFlagDiv() {
                     <div className="clue">💡1</div>
                     <div className="clue">💡2</div>
                   </div>
-                  <div className="separator"></div>
                 </div>
-                <Legend />
                 <WriteSystem
                   countryName={countryName}
                   apply={applyChangeWriteSystem}
@@ -70,10 +68,11 @@ function GameFlagDiv() {
                   countryNameTab={countryNameTab}
                   countryNameTabRep={countryNameTabRep}
                 />
-                <p className="italic">
+                <em className="italic">
                   Ecrire la reponse, en écrivant sur votre clavier ou sur
                   téléphone en tapotant sur les cases
-                </p>
+                </em>
+                <Legend />
               </>
             )}
           </div>

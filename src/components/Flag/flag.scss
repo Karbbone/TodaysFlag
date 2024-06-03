@@ -1,21 +1,19 @@
 [id="flag"] {
-  flex-shrink: 0;
-  height: 280px;
-  width: 390px;
-  margin-top: 15px;
-  margin-bottom: 30px;
+  position: relative;
+  object-fit: contain;
   box-shadow: 0 0 60px 5px rgba(12, 65, 209, 0.8);
-  position: sticky;
-  @media screen and (max-width: 1200px) {
-    height: 240px;
-    width: 340px;
-  }
-  @media screen and (max-width: 1084px) {
-    height: 200px;
-    width: 300px;
-  }
-  @media screen and (max-width: 768px) {
-    height: 180px;
-    width: 280px;
-  }
 }
+
+/*
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+Si trop grande :
+object-fit: contain;
+
+Si trop petite :
+object-fit: cover;
+*/
