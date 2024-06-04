@@ -21,7 +21,10 @@ function WriteSystem(props) {
     let cloneCountryNameTabRep = Object.assign([], props.countryNameTabRep);
     if (event.key === "Backspace") {
       if (letter >= 1 && cloneCountryNameTabRep[letter] === ".") {
-        if (cloneCountryNameTab[letter - 1] === " ") {
+        if (
+          cloneCountryNameTab[letter - 1] === " " ||
+          cloneCountryNameTab[letter - 1] === "-"
+        ) {
           cloneCountryNameTabRep[letter - 2] = ".";
           letter = letter - 2;
         } else {
@@ -33,7 +36,10 @@ function WriteSystem(props) {
       }
     } else if (/^[a-zA-Z]$/.test(event.key)) {
       cloneCountryNameTabRep[letter] = event.key.toUpperCase();
-      if (cloneCountryNameTab[letter + 1] === " ") {
+      if (
+        cloneCountryNameTab[letter + 1] === " " ||
+        cloneCountryNameTab[letter + 1] === "-"
+      ) {
         letter = letter + 2;
       } else if (letter < cloneCountryNameTab.length - 1) {
         letter = letter + 1;
