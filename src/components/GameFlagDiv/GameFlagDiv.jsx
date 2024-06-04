@@ -5,6 +5,7 @@ import Confetti from "react-confetti";
 import WriteSystem from "../WriteSystem/WriteSystem.jsx";
 import Legend from "../Legend/Legend.jsx";
 import useWindowSize from "react-use/lib/useWindowSize";
+import { ColorRing } from "react-loader-spinner";
 
 function GameFlagDiv() {
   const { data, isLoading, error } = useCountryData();
@@ -21,7 +22,22 @@ function GameFlagDiv() {
   };
 
   if (isLoading) {
-    return <p>Loading</p>;
+    return (
+      <ColorRing
+        visible={true}
+        height="120"
+        width="120"
+        ariaLabel="color-ring-loading"
+        wrapperStyle={{
+          position: "absolute",
+          top: "40%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+        wrapperClass="color-ring-wrapper"
+        colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+      />
+    );
   }
 
   if (error) {
