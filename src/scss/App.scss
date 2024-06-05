@@ -1,5 +1,7 @@
 @import "font";
 
+$tablet: 768px;
+$wide: 1200px;
 $max-width: 1280px;
 
 /* Couleurs du projet */
@@ -48,4 +50,5 @@ body {
   @import "../components/Footer/footer.scss";
   @import "../components/Flag/flag.scss";
   @import "../components/DecorativeFlag/decorativeFlag.scss";
+  @import "../pages/Homepage.scss";
 }

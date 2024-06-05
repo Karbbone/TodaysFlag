@@ -6,6 +6,7 @@ import WriteSystem from "../WriteSystem/WriteSystem.jsx";
 import Legend from "../Legend/Legend.jsx";
 import useWindowSize from "react-use/lib/useWindowSize";
 import { ColorRing } from "react-loader-spinner";
+import DecorativeFlagGroup from "../DecorativeFlagGroup/DecorativeFlagGroup.jsx";
 
 function GameFlagDiv() {
   const { data, isLoading, error } = useCountryData();
@@ -47,54 +48,57 @@ function GameFlagDiv() {
   const { flagUrl, countryName, countryNameTab, countryNameTabRep } = data;
 
   return (
-    <div id="flag-content">
-      <div className="center">
-        <div className="wrapper">
-          <div id="main-content">
-            {flagUrl && <Flag flagUrl={flagUrl} />}
-            {checkResponse ? (
-              <>
-                <Confetti
-                  run={true}
-                  recycle={false}
-                  width={width}
-                  height={height}
-                />
-                <p>BRAVO</p>
-              </>
-            ) : (
-              <>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <div className="clues">
-                    <div className="clue">💡1</div>
-                    <div className="clue">💡2</div>
+    <>
+      <DecorativeFlagGroup />
+      <div id="flag-content">
+        <div className="center">
+          <div className="wrapper">
+            <div id="main-content">
+              {flagUrl && <Flag flagUrl={flagUrl} />}
+              {checkResponse ? (
+                <>
+                  <Confetti
+                    run={true}
+                    recycle={false}
+                    width={width}
+                    height={height}
+                  />
+                  <p>BRAVO</p>
+                </>
+              ) : (
+                <>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div className="clues">
+                      <div className="clue">💡1</div>
+                      <div className="clue">💡2</div>
+                    </div>
                   </div>
-                </div>
-                <WriteSystem
-                  countryName={countryName}
-                  apply={applyChangeWriteSystem}
-                  currentLetter={currentLetter}
-                  countryNameTab={countryNameTab}
-                  countryNameTabRep={countryNameTabRep}
-                />
-                <em className="italic">
-                  Ecrire la reponse, en écrivant sur votre clavier ou sur
-                  téléphone en tapotant sur les cases
-                </em>
-                <Legend />
-              </>
-            )}
+                  <WriteSystem
+                    countryName={countryName}
+                    apply={applyChangeWriteSystem}
+                    currentLetter={currentLetter}
+                    countryNameTab={countryNameTab}
+                    countryNameTabRep={countryNameTabRep}
+                  />
+                  <em className="italic">
+                    Ecrire la reponse, en écrivant sur votre clavier ou sur
+                    téléphone en tapotant sur les cases
+                  </em>
+                  <Legend />
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

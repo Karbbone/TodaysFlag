@@ -42,7 +42,22 @@ function Header() {
           <nav className="col-m">
             <ul>
               <li>
-                <a>Drapeau</a>
+                <a
+                  className="active"
+                  href="/"
+                  aria-label="Redirection vers la page d'accueil"
+                >
+                  Accueil
+                </a>
+              </li>
+              <li>
+                <a
+                  className="active"
+                  href="/flag"
+                  aria-label="Redirection vers la page de jeu drapeau"
+                >
+                  Drapeau
+                </a>
               </li>
               <li className="inactive">
                 <a>Capitale</a>

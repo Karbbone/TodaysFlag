@@ -15,6 +15,10 @@
         color: gray;
         cursor: default;
       }
+      .active {
+        color: white;
+        text-decoration: none;
+      }
     }
     .col-r {
       .countries-select {
