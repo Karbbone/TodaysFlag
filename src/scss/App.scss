@@ -1,7 +1,8 @@
 @import "font";
 
 $tablet: 768px;
-$wide: 1200px;
+$desktop: 992px;
+$wide: 1280px;
 $max-width: 1280px;
 
 /* Couleurs du projet */
@@ -30,12 +31,10 @@ body {
 
   color: $color-black;
   background-color: #090b12;
-
-  //  Sticky footer
-  @media only screen and (max-width: 992px) {
+  #root {
     display: flex;
     flex-direction: column;
-
+    height: 100%;
     #content {
       flex: 1 0 auto;
     }
