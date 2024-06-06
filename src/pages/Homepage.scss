@@ -1,3 +1,12 @@
+.title-section-home-page {
+  font-size: 4rem;
+  font-weight: 700;
+  text-align: center;
+  @media screen and (min-width: $desktop) {
+    margin-bottom: 4rem;
+  }
+  margin-bottom: 2rem;
+}
 [id="section-home"] {
   @media screen and (min-width: $desktop) {
     padding-top: 4rem;
@@ -40,15 +49,6 @@
   }
   padding-top: 2rem;
   padding-bottom: 2rem;
-  h2 {
-    font-size: 4rem;
-    font-weight: 700;
-    text-align: center;
-    @media screen and (min-width: $desktop) {
-      margin-bottom: 4rem;
-    }
-    margin-bottom: 2rem;
-  }
   div {
     &.games-list {
       @media screen and (min-width: $desktop) {
@@ -67,7 +67,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        >p {
+        > p {
           font-size: 1.8rem;
         }
       }
@@ -133,11 +133,25 @@
     }
   }
 }
-
-.separator{
+[id="section-flag-description"] {
   @media screen and (min-width: $desktop) {
-  width: 50%;
-  left: 23%;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  .swipper-home {
+    position: relative;
+    img {
+      width: 250px;
+    }
+  }
+}
+
+.separator {
+  @media screen and (min-width: $desktop) {
+    width: 50%;
+    left: 23%;
   }
   width: 90%;
   position: relative;
@@ -150,4 +164,16 @@
     height: 1px;
     background: linear-gradient(to right, $ring-color, $primary-default-color);
   }
+}
+
+#section-flag-description .content {
+  display: flex;
+  gap: 15rem;
+}
+#section-flag-description .text {
+  text-align: end;
+}
+
+#section-flag-description .swiper-container {
+  max-width: 30%;
 }
