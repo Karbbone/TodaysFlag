@@ -1,4 +1,4 @@
-import logo from "../assets/freepik/20944707.jpg";
+import logo from "../assets/freepik/20944707.png";
 import backgroundFlagGame from "../assets/freepik/red-blue-polygonal-background/O4YIH10.jpg";
 import Paris from "../assets/paris.jpg";
 import Sprint from "../assets/freepik/flat-design-cross-country-illustration/7461474.jpg";
@@ -9,10 +9,13 @@ export const Homepage = () => {
         <div className="wrapper">
           <div className="cols">
             <div className="col-l">
-              <h2>Today&apos;s flag</h2>
+              <h2>
+                Today&apos;s <span className="span-gradient">Flag</span>
+              </h2>
               <p>
-                Votre besoin quotidien de culture générale. <br></br> Apprenez
-                les drapeaux du monde entier en vous amusant.
+                Votre besoin quotidien de{" "}
+                <span className="span-gradient">culture générale</span>.{" "}
+                <br></br> Apprenez les drapeaux du monde entier en vous amusant.
               </p>
             </div>
             <div className="col-r">
@@ -21,9 +24,12 @@ export const Homepage = () => {
           </div>
         </div>
       </section>
+      <div className="separator"></div>
       <section id="section-mode">
         <div className="wrapper">
-          <h2>Mode de jeu</h2>
+          <h2>
+            Modes de <span className="span-gradient">jeux</span>
+          </h2>
           <div className="games-list">
             <div className="game-container">
               <a
@@ -55,6 +61,7 @@ export const Homepage = () => {
           </div>
         </div>
       </section>
+      <div className="separator"></div>
     </>
   );
 };

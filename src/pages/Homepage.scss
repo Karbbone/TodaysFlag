@@ -5,8 +5,6 @@
   }
   padding-top: 2rem;
   padding-bottom: 2rem;
-
-  background-color: $color-white;
   div {
     &.cols {
       @media screen and (min-width: $tablet) {
@@ -17,17 +15,12 @@
       gap: 6rem;
     }
     &.col-l {
-      text-align: center;
       h2 {
-        font-size: 6rem;
+        font-size: 7rem;
         font-weight: 700;
       }
       p {
-        font-size: 1.8rem;
-      }
-      h2,
-      p {
-        color: $color-black;
+        font-size: 2.2rem;
       }
     }
     &.col-r {
@@ -74,6 +67,9 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+        >p {
+          font-size: 1.8rem;
+        }
       }
       a {
         &.game {
@@ -120,7 +116,7 @@
             background-color: transparent;
             background-size: cover;
             background-repeat: no-repeat;
-            background-position: center center;
+            background-position: top center;
           }
 
           p {
@@ -129,11 +125,29 @@
             justify-content: center;
             height: 100%;
             margin: 0;
-            text-shadow: 0 0 0.5rem $color-black;
-            -webkit-text-stroke: 0.15rem black;
+            text-shadow: 0 0 0.2rem $color-black;
+            -webkit-text-stroke: 0.12rem black;
           }
         }
       }
     }
+  }
+}
+
+.separator{
+  @media screen and (min-width: $desktop) {
+  width: 50%;
+  left: 23%;
+  }
+  width: 90%;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, $ring-color, $primary-default-color);
   }
 }

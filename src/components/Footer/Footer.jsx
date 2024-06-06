@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer id="footer">
       <div className="flex flex-center">
-        <p>Made by Karbbone(Clément)</p>
+        <p>Fait par Karbbone (Clément)</p>
         <a href="https://github.com/Karbbone">
           <img src={githubLogo} className="logo-github-footer" />
         </a>

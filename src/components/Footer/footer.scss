@@ -1,9 +1,8 @@
 [id="footer"] {
-  background-color: #0a0f21;
+  background-color: $primary-default-color;
   width: 100%;
   bottom: 0;
   color: white;
-  position: sticky;
   .logo-github-footer {
     height: 35px;
     width: 35px;

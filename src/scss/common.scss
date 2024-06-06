@@ -3,7 +3,7 @@ h2,
 p,
 label,
 em {
-  color: white;
+  color: $foreground-color;
 }
 
 .center {
@@ -67,4 +67,10 @@ img {
   max-width: 100%;
   height: auto;
   vertical-align: middle;
+}
+
+.span-gradient {
+  background: linear-gradient(to right, $ring-color, $primary-default-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

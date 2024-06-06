@@ -1,35 +1,10 @@
 import logo from "../../assets/logo.png";
-import Select from "react-select";
-
+import { useState } from "react";
 function Header() {
-  const options = [
-    { value: "fra", image: "https://flagsapi.com/FR/flat/32.png" },
-  ];
+  const [theme, setTheme] = useState("light");
 
-  const customStyles = {
-    control: (provided, state) => ({
-      ...provided,
-      borderRadius: "8px",
-      minHeight: "unset",
-      height: "40px",
-      width: "fit-content",
-      boxShadow: state.isFocused ? "0 0 0 1px #00ad9f" : "none",
-    }),
-    indicatorSeparator: () => ({}),
-    dropdownIndicator: (provided, state) => ({
-      ...provided,
-      color: "#00ad9f",
-      transition: "transform 0.3s",
-      transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : null,
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? "#00a2b1" : null, // Couleur de fond au survol
-      color: state.isSelected ? "#fff" : "#000", // Couleur du texte de l'option sélectionnée
-      "&:hover": {
-        backgroundColor: "#00ad9f", // Couleur de fond au survol
-      },
-    }),
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
@@ -67,19 +42,8 @@ function Header() {
               </li>
             </ul>
           </nav>
-          <div className="col-r">
-            <Select
-              isSearchable={false}
-              styles={customStyles}
-              options={options}
-              defaultValue={options[0]}
-              formatOptionLabel={(country) => (
-                <div className="countries-select">
-                  <img src={country.image} alt="country-image" />
-                </div>
-              )}
-              placeholder="Langue"
-            />
+          <div className="col-r" onClick={() => toggleTheme()}>
+            <span>{theme === "light" ? "🌙" : "🌞"}</span>
           </div>
         </div>
       </div>
