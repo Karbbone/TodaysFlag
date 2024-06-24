@@ -1,4 +1,4 @@
-import logo from "../../assets/logo.png";
+import logo from "../../assets/todaysFlagIcon.png";
 import { useState } from "react";
 function Header() {
   const [theme, setTheme] = useState("light");
