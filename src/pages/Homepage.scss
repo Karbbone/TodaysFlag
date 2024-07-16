@@ -168,7 +168,8 @@
   .content {
     @media screen and (min-width: $desktop) {
       display: flex;
-      gap: 15rem;
+      align-items: center;
+      gap: 10rem;
       &.invert {
         flex-direction: row-reverse;
       }
@@ -176,6 +177,7 @@
   }
   .text {
     text-align: start;
+    font-size: 1.8rem;
   }
   .swiper-container {
     @media screen and (min-width: $desktop) {
@@ -184,6 +186,7 @@
     }
     text-align: center;
     max-width: 60%;
+    margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
   }
