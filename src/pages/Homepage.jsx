@@ -1,4 +1,4 @@
-import logo from "../assets/freepik/20944707.png";
+import svg from "../assets/world-childrens.svg";
 import backgroundFlagGame from "../assets/freepik/red-blue-polygonal-background/O4YIH10.jpg";
 import Paris from "../assets/paris.jpg";
 import Sprint from "../assets/freepik/flat-design-cross-country-illustration/7461474.jpg"; // Import Swiper React components
@@ -32,7 +32,7 @@ export const Homepage = () => {
               </p>
             </div>
             <div className="col-r">
-              <img src={logo}></img>
+              <img src={svg}></img>
             </div>
           </div>
         </div>
