@@ -128,7 +128,24 @@ export const Homepage = () => {
           <h2 className="title-section-home-page">
             Mode <span className="span-gradient">Capitale</span>
           </h2>
-          <div className="content">
+          <div className="content invert">
+            <div className="text">
+              <p>
+                Bienvenue, voici le premier mode de jeu original de Today&apos;s
+                flag !
+              </p>
+              <p>
+                Voici la règle, elle est très simple : Chaque jour, un nouveau
+                drapeau vous sera présenté, et votre mission est de deviner le
+                pays correspondant. Les espaces dans le nom du pays seront
+                indiqués dans la légende.
+              </p>
+              <p>
+                Amusez-vous bien et testez vos connaissances en géographie tout
+                en vous amusant !
+              </p>
+              <span className="span-gradient">ENJOY !</span>
+            </div>
             <div className="swiper-container">
               <Swiper
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
@@ -149,23 +166,6 @@ export const Homepage = () => {
                   <img src="https://flagcdn.com/w320/it.png"></img>
                 </SwiperSlide>
               </Swiper>
-            </div>
-            <div className="text">
-              <p>
-                Bienvenue, voici le premier mode de jeu original de Today&apos;s
-                flag !
-              </p>
-              <p>
-                Voici la règle, elle est très simple : Chaque jour, un nouveau
-                drapeau vous sera présenté, et votre mission est de deviner le
-                pays correspondant. Les espaces dans le nom du pays seront
-                indiqués dans la légende.
-              </p>
-              <p>
-                Amusez-vous bien et testez vos connaissances en géographie tout
-                en vous amusant !
-              </p>
-              <span className="span-gradient">ENJOY !</span>
             </div>
           </div>
         </div>
