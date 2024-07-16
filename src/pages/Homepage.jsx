@@ -115,6 +115,12 @@ export const Homepage = () => {
                   <img src="https://flagcdn.com/w320/jp.png"></img>
                 </SwiperSlide>
                 <SwiperSlide>
+                  <img src="https://flagcdn.com/w320/ad.png"></img>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src="https://flagcdn.com/w320/km.png"></img>
+                </SwiperSlide>
+                <SwiperSlide>
                   <img src="https://flagcdn.com/w320/it.png"></img>
                 </SwiperSlide>
               </Swiper>

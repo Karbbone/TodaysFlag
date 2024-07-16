@@ -168,7 +168,7 @@
   .content {
     @media screen and (min-width: $desktop) {
       display: flex;
-      align-items: center;
+      align-items: start;
       gap: 10rem;
       &.invert {
         flex-direction: row-reverse;
