@@ -2,13 +2,14 @@ main {
   &#main {
     div {
       &#content-legend {
-        background-color: #1c223a;
+        background-color: hsl(194, 56.8%, 2.9%);
+        border: solid 2px hsl(81, 72.7%, 37%);
         position: fixed;
         right: 10vw;
         top: 200px;
         width: 200px;
         padding: 10px 20px;
-        border-radius: 5px;
+        border-radius: 15px;
         @media screen and (max-width: 1024px) {
           right: 5vw;
         }
@@ -40,10 +41,10 @@ main {
             }
           }
           .current {
-            background-color: #2e8ce9;
+            background-color: hsl(82, 88.9%, 72.1%);
           }
           .letter {
-            background-color: #153a51;
+            background-color: hsl(81, 72.7%, 37%);
           }
           .space {
             background-color: white;
