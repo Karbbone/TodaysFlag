@@ -133,20 +133,6 @@
     }
   }
 }
-[id="section-flag-description"] {
-  @media screen and (min-width: $desktop) {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  .swipper-home {
-    position: relative;
-    img {
-      width: 250px;
-    }
-  }
-}
 
 .separator {
   @media screen and (min-width: $desktop) {
@@ -166,15 +152,42 @@
   }
 }
 
-#section-flag-description .content {
-  display: flex;
-  gap: 15rem;
-}
-#section-flag-description .text {
-  text-align: start;
-}
-
-#section-flag-description .swiper-container {
-  text-align: center;
-  max-width: 30%;
+[id="section-flag-description"] {
+  @media screen and (min-width: $desktop) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  .swipper-home {
+    position: relative;
+    img {
+      width: 250px;
+    }
+  }
+  .content {
+    @media screen and (min-width: $desktop) {
+      display: flex;
+      align-items: start;
+      gap: 10rem;
+      &.invert {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+  .text {
+    text-align: start;
+    font-size: 1.8rem;
+  }
+  .swiper-container {
+    @media screen and (min-width: $desktop) {
+      text-align: center;
+      max-width: 30%;
+    }
+    text-align: center;
+    max-width: 60%;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
