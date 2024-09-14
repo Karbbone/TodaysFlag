@@ -20,7 +20,7 @@ function WriteSystem(props) {
     let cloneCountryNameTab = Object.assign([], props.countryNameTab);
     let cloneCountryNameTabRep = Object.assign([], props.countryNameTabRep);
     if (event.key === "Backspace") {
-      if (letter >= 1 && cloneCountryNameTabRep[letter] === ".") {
+      if (letter >= 1) {
         if (
           cloneCountryNameTab[letter - 1] === " " ||
           cloneCountryNameTab[letter - 1] === "-"
@@ -41,7 +41,7 @@ function WriteSystem(props) {
         cloneCountryNameTab[letter + 1] === "-"
       ) {
         letter = letter + 2;
-      } else if (letter < cloneCountryNameTab.length - 1) {
+      } else if (letter < cloneCountryNameTab.length) {
         letter = letter + 1;
       }
       if (letter >= cloneCountryNameTab.length - 1) {
