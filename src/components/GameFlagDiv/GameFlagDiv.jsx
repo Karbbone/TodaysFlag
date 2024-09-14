@@ -56,6 +56,9 @@ function GameFlagDiv() {
 
   return (
     <>
+      {checkResponse && (
+        <Confetti run={true} recycle={false} width={width} height={height} />
+      )}
       <DecorativeFlagGroup />
       <div id="flag-content">
         <div className="center">
@@ -63,15 +66,7 @@ function GameFlagDiv() {
             <div id="main-content">
               {flagUrl && <Flag flagUrl={flagUrl} />}
               {checkResponse ? (
-                <>
-                  <Confetti
-                    run={true}
-                    recycle={false}
-                    width={width}
-                    height={height}
-                  />
-                  <p>BRAVO</p>
-                </>
+                <p>BRAVO</p>
               ) : (
                 <>
                   <div
