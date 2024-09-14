@@ -36,7 +36,14 @@ function GameFlagDiv() {
           transform: "translate(-50%, -50%)",
         }}
         wrapperClass="color-ring-wrapper"
-        colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+        colors={[
+          "hsl(81, 72.7%, 37%)",
+          "hsl(81, 72.7%, 37%)",
+          "hsl(81, 72.7%, 37%)",
+          "hsl(82, 88.9%, 72.1%)",
+          "hsl(82, 88.9%, 72.1%)",
+          "hsl(82, 88.9%, 72.1%)",
+        ]}
       />
     );
   }
