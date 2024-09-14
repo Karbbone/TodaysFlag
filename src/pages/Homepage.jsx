@@ -103,9 +103,6 @@ export const Homepage = () => {
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                 spaceBetween={50}
                 slidesPerView={1}
-                navigation
-                pagination={{ clickable: true }}
-                scrollbar={{ draggable: true }}
                 autoplay={{ delay: 2500, disableOnInteraction: false }}
               >
                 <SwiperSlide>
