@@ -46,7 +46,9 @@ const useCountryData = () => {
     };
   };
 
-  return useQuery("countryData", fetchCountryData);
+  return useQuery("countryData", fetchCountryData, {
+    refetchOnWindowFocus: false,
+  });
 };
 
 export default useCountryData;
