@@ -129,7 +129,7 @@ function WriteSystem(props) {
         <input
           type="text"
           ref={inputRef}
-          style={{ display: "block", zIndex: -1, position: "absolute" }}
+          style={{ visibility: "hidden", zIndex: -1, position: "absolute" }}
           onChange={(e) => handleChangeInputMobile(e)}
         />
       </div>
