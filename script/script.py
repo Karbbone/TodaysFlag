@@ -3,7 +3,7 @@ import json
 def escape_apostrophes(value):
     return value.replace("'", "''") if isinstance(value, str) else value
 
-with open('countries.json', 'r', encoding='utf-8') as file:
+with open('MPL/countries.json', 'r', encoding='utf-8') as file:
     countries = json.load(file)
 
 sql_queries = []
