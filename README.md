@@ -9,4 +9,4 @@ Currently, two official plugins are available:
 
 Données JSON des pays :
 
-Les fichiers JSON utilisés pour remplir la base de données proviennent de Rest Countries. Ces fichiers sont sous licence Mozilla Public License 2.0 (MPL 2.0). Le projet est compatible avec les licences MIT et MPL 2.0.
+Les fichiers JSON utilisés pour remplir la base de données proviennent de Rest Countries. Ces fichiers sont sous licence Mozilla Public License 2.0 (MPL 2.0). Le projet est compatible avec les licences MIT et MPL 2.0 et proviennent de https://gitlab.com/restcountries/restcountries.
