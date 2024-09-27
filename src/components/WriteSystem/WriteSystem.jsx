@@ -1,8 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import PropTypes from "prop-types";
 
 function WriteSystem(props) {
-  const inputRef = useRef(null);
   const keyboardLetter = [
     ["A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P"],
     ["Q", "S", "D", "F", "G", "H", "J", "K", "L", "M"],
@@ -20,17 +19,6 @@ function WriteSystem(props) {
 
   const keyListener = (event) => {
     handleOnChangeInputText(event.key);
-  };
-
-  const handleDivClick = () => {
-    const isMobile =
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      );
-
-    if (isMobile) {
-      inputRef.current.focus();
-    }
   };
 
   const handleOnChangeInputText = (key) => {
@@ -74,7 +62,7 @@ function WriteSystem(props) {
 
   return (
     <div id="content-write">
-      <div className="writeDiv" onClick={handleDivClick}>
+      <div className="writeDiv">
         {props.countryNameTabRep.map((letter, index) => {
           let bg = letter === " " ? "#ffffff" : "hsl(81, 72.7%, 37%)";
           bg = index === props.currentLetter ? "hsl(82, 88.9%, 72.1%)" : bg;
