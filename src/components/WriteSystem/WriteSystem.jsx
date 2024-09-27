@@ -4,6 +4,11 @@ import PropTypes from "prop-types";
 function WriteSystem(props) {
   const inputRef = useRef(null);
   const [inputMobile, setInputMobile] = useState([]);
+  const keyboardLetter = [
+    ["a", "z", "e", "r", "t", "y", "u", "i", "o", "p"],
+    ["q", "s", "d", "f", "g", "h", "j", "k", "l", "m"],
+    ["w", "x", "c", "v", "b", "n"],
+  ];
 
   useEffect(() => {
     window.addEventListener("keydown", keyListener);
@@ -132,6 +137,17 @@ function WriteSystem(props) {
           style={{ visibility: "hidden", zIndex: -1, position: "absolute" }}
           onChange={(e) => handleChangeInputMobile(e)}
         />
+      </div>
+      <div className="keyboard">
+        {keyboardLetter.map((line, index) => (
+          <div key={index} className="keyboard-line">
+            {line.map((letter) => (
+              <a key={letter} className="keyboard-key">
+                {letter}
+              </a>
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   );
