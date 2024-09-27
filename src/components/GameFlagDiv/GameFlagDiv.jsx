@@ -90,8 +90,7 @@ function GameFlagDiv() {
                     countryNameTabRep={countryNameTabRep}
                   />
                   <em className="italic">
-                    Ecrire la reponse, en écrivant sur votre clavier ou sur
-                    téléphone en tapotant sur les cases
+                    Ecrire la reponse, en écrivant sur le clavier !
                   </em>
                   <Legend />
                 </>
