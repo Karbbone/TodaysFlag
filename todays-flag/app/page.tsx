@@ -1,9 +1,5 @@
-import { Button } from "@/components/ui/button";
+import { HeroSection } from "./components/HeroSection";
 
 export default async function Home() {
-  return (
-    <div>
-      <Button>Click me</Button>
-    </div>
-  );
+  return <HeroSection />;
 }
