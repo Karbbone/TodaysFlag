@@ -4,7 +4,7 @@ export function GameSection() {
       <div className="container mx-auto px-4">
         <h2 className="text-5xl font-bold text-center mb-8 md:mb-16">
           Modes de{" "}
-          <span className="bg-gradient-to-r from-ring to-primary bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-flash to-primary bg-clip-text text-transparent">
             jeux
           </span>
         </h2>

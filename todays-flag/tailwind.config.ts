@@ -10,39 +10,26 @@ export default {
   theme: {
     extend: {
       colors: {
-        border: "hsl(194, 90.7%, 17.9%)",
-        input: "hsl(194, 90.7%, 17.9%)",
-        ring: "hsl(82, 88.9%, 72.1%)",
-        background: "hsl(194, 56.8%, 2.9%)",
-        foreground: "hsl(74, 63.3%, 92.7%)",
-        primary: {
-          DEFAULT: "hsl(81, 72.7%, 37%)",
-          foreground: "hsl(205, 33.2%, 2.3%)",
-        },
-        secondary: {
-          DEFAULT: "hsl(194, 90.7%, 17.9%)",
-          foreground: "hsl(74, 63.3%, 92.7%)",
-        },
-        destructive: {
-          DEFAULT: "hsl(199, 91%, 25.7%)",
-          foreground: "hsl(74, 63.3%, 92.7%)",
-        },
-        muted: {
-          DEFAULT: "hsl(194, 90.7%, 17.9%)",
-          foreground: "hsl(193, 82.5%, 88.2%)",
-        },
-        accent: {
-          DEFAULT: "hsl(194, 90.7%, 17.9%)",
-          foreground: "hsl(74, 63.3%, 92.7%)",
-        },
-        popover: {
-          DEFAULT: "hsl(194, 56.8%, 2.9%)",
-          foreground: "hsl(74, 63.3%, 92.7%)",
-        },
-        card: {
-          DEFAULT: "hsl(194, 56.8%, 2.9%)",
-          foreground: "hsl(74, 63.3%, 92.7%)",
-        },
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        flash: "hsl(82, 88.9%, 72.1%)",
+        card: "hsl(var(--card))",
+        "card-foreground": "hsl(var(--card-foreground))",
+        popover: "hsl(var(--popover))",
+        "popover-foreground": "hsl(var(--popover-foreground))",
+        primary: "hsl(var(--primary))",
+        "primary-foreground": "hsl(var(--primary-foreground))",
+        secondary: "hsl(var(--secondary))",
+        "secondary-foreground": "hsl(var(--secondary-foreground))",
+        muted: "hsl(var(--muted))",
+        "muted-foreground": "hsl(var(--muted-foreground))",
+        accent: "hsl(var(--accent))",
+        "accent-foreground": "hsl(var(--accent-foreground))",
+        destructive: "hsl(var(--destructive))",
+        "destructive-foreground": "hsl(var(--destructive-foreground))",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
       },
       borderRadius: {
         lg: "var(--radius)",
