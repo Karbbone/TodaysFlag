@@ -7,7 +7,7 @@ export function HeroSection() {
       <div className="mx-auto px-4">
         <div className="flex flex-col items-center justify-center gap-16">
           <div>
-            <h2 className="text-7xl font-bold">
+            <h2 className="text-7xl font-bold mb-4">
               Today&apos;s{" "}
               <span className="bg-gradient-to-r from-flash to-primary bg-clip-text text-transparent">
                 Flag
@@ -19,7 +19,9 @@ export function HeroSection() {
                 culture générale
               </span>
               . <br />
-              Apprenez les drapeaux du monde entier en vous amusant.
+              <span className="hidden md:block">
+                Apprenez les drapeaux du monde entier en vous amusant.
+              </span>
             </p>
           </div>
           <Globe />
