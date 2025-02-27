@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function Header() {
   return (
-    <header className="relative border-b-[1px] border-ring">
+    <header className="relative">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <div>
