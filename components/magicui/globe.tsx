@@ -74,12 +74,7 @@ export function Globe({
   }, [rs, config]);
 
   return (
-    <div
-      className={cn(
-        "aspect-[1/1]  h-auto w-[700px] absolute top-[45%]",
-        className
-      )}
-    >
+    <div className={cn("aspect-[1/1]  h-auto w-[500px] absolute", className)}>
       <canvas
         className={cn(
           "size-full opacity-0 transition-opacity duration-500 [contain:layout_paint_size]"
