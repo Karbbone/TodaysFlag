@@ -1,0 +1,9 @@
+{
+  "[json]": {
+    "files.exclude": {
+      "**/prisma/seed/country.json": {
+        "editor.formatOnSave": false
+      }
+    }
+  }
+}
