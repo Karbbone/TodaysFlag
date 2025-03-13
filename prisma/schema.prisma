@@ -19,7 +19,7 @@ model Country {
   NameFRA String
   NameESP String
   Flag String
-  Capital String
+  Capital String?
   Map String
   GuessedCountry GuessedCountry?
 }
