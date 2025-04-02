@@ -1,6 +1,6 @@
 import { prisma } from "@/src/lib/prisma";
 import { Country, GuessedCountry } from "@prisma/client";
-import { ResponseService } from "./responseService";
+import { ApiResponse, ResponseService } from "./responseService";
 
 /**
  * Interface defining the result of a country update operation
@@ -10,11 +10,10 @@ import { ResponseService } from "./responseService";
  * @property {string} [countryCode] - The country code if successful
  * @property {string} [countryName] - The country name if successful
  */
-interface CountryUpdateResult {
-  success: boolean;
-  message: string;
-  countryCode?: string;
-  countryName?: string;
+
+export interface CountryDataResponse {
+  countryName: string;
+  countryCode: string;
 }
 
 /**
@@ -95,7 +94,9 @@ export class GuessedCountryService {
    * @public
    * @returns {Promise<CountryUpdateResult>} The result of the update operation
    */
-  public async updateDailyCountry(): Promise<CountryUpdateResult> {
+  public async updateDailyCountry(): Promise<
+    ApiResponse<CountryDataResponse | undefined>
+  > {
     try {
       await this.checkAndResetGuessedCountries();
       const randomCountry = await this.getRandomAvailableCountry();

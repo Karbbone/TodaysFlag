@@ -85,10 +85,12 @@ export class ResponseService {
   /**
    * Formate une réponse d'erreur
    */
-  public static formatErrorResponse(message: string): ApiResponse {
+  public static formatErrorResponse<T = undefined>(
+    message: string
+  ): ApiResponse<T> {
     return {
       success: false,
       message,
-    };
+    } as ApiResponse<T>;
   }
 }

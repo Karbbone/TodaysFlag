@@ -1,4 +1,7 @@
-import { GuessedCountryService } from "@/lib/services/guessedCountryService";
+import {
+  CountryDataResponse,
+  GuessedCountryService,
+} from "@/lib/services/guessedCountryService";
 import { ResponseService } from "@/lib/services/responseService";
 
 /**
@@ -7,10 +10,6 @@ import { ResponseService } from "@/lib/services/responseService";
  * @property {string} countryName - The name of the country
  * @property {string} countryCode - The country code (e.g., 'FR' for France)
  */
-interface CountryResponse {
-  countryName: string;
-  countryCode: string;
-}
 
 /**
  * API route handler for updating the daily country
@@ -30,8 +29,8 @@ export async function GET() {
     return ResponseService.error(updateResult.message);
   }
 
-  return ResponseService.success<CountryResponse>(updateResult.message, {
-    countryName: updateResult.countryName!,
-    countryCode: updateResult.countryCode!,
-  });
+  return ResponseService.success<CountryDataResponse>(
+    updateResult.message,
+    updateResult.data
+  );
 }
