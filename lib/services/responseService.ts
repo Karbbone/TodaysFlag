@@ -71,9 +71,9 @@ export class ResponseService {
   /**
    * Formate une réponse de succès avec des données
    */
-  public static formatSuccessResponse<T>(
+  public static formatSuccessResponse<T = void>(
     message: string,
-    data: T
+    data?: T
   ): ApiResponse<T> {
     return {
       success: true,

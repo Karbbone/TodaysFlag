@@ -3,20 +3,6 @@ import { Country, GuessedCountry } from "@prisma/client";
 import { ApiResponse, ResponseService } from "./responseService";
 
 /**
- * Interface defining the result of a country update operation
- * @interface CountryUpdateResult
- * @property {boolean} success - Whether the operation was successful
- * @property {string} message - A message describing the result
- * @property {string} [countryCode] - The country code if successful
- * @property {string} [countryName] - The country name if successful
- */
-
-export interface CountryDataResponse {
-  countryName: string;
-  countryCode: string;
-}
-
-/**
  * @class GuessedCountryService
  * @description Handles operations related to countries and daily country selection
  */
@@ -94,9 +80,7 @@ export class GuessedCountryService {
    * @public
    * @returns {Promise<CountryUpdateResult>} The result of the update operation
    */
-  public async updateDailyCountry(): Promise<
-    ApiResponse<CountryDataResponse | undefined>
-  > {
+  public async updateDailyCountry(): Promise<ApiResponse<void | undefined>> {
     try {
       await this.checkAndResetGuessedCountries();
       const randomCountry = await this.getRandomAvailableCountry();
@@ -110,16 +94,44 @@ export class GuessedCountryService {
       await this.addGuessedCountry(randomCountry.CC);
 
       return ResponseService.formatSuccessResponse(
-        `Pays du jour mis à jour: ${randomCountry.NameFRA}`,
-        {
-          countryCode: randomCountry.CC,
-          countryName: randomCountry.NameFRA,
-        }
+        `Pays du jour mis à jour: ${randomCountry.NameFRA}`
       );
     } catch (error) {
       console.error("Erreur lors de la mise à jour du pays du jour:", error);
       return ResponseService.formatErrorResponse(
         "Erreur lors de la mise à jour du pays du jour"
+      );
+    }
+  }
+
+  public async getTodayCountry(): Promise<
+    ApiResponse<Country & GuessedCountry>
+  > {
+    try {
+      const latestGuessed = await prisma.guessedCountry.findFirst({
+        include: {
+          country: true,
+        },
+        orderBy: {
+          guessedAt: "desc",
+        },
+      });
+
+      if (latestGuessed) {
+        return ResponseService.formatSuccessResponse("Pays du jour trouvé", {
+          ...latestGuessed.country,
+          guessedAt: latestGuessed.guessedAt,
+          countryCC: latestGuessed.countryCC,
+        });
+      } else {
+        return ResponseService.formatErrorResponse(
+          "Aucun pays deviné aujourd'hui"
+        );
+      }
+    } catch (error) {
+      console.error("Erreur lors de la récupération du pays du jour:", error);
+      return ResponseService.formatErrorResponse(
+        "Erreur lors de la récupération du pays du jour"
       );
     }
   }

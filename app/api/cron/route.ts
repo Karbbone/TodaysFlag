@@ -1,19 +1,24 @@
 import { GuessedCountryService } from "@/lib/services/guessedCountryService";
 import { ResponseService } from "@/lib/services/responseService";
+import { GuessedCountry } from "@prisma/client";
 
 /**
- * API route for retrieving the daily country to guess
+ * API route handler for updating the daily country
  * @async
  * @function GET
  * @description This endpoint updates the daily country to guess and returns the selected country's information
  * @returns {Promise<Response>} A response containing either:
  */
 export async function GET() {
+  // Initialize the country service
   const guessedCountryService = new GuessedCountryService();
-  const todayCountry = await guessedCountryService.getTodayCountry();
-  if (todayCountry.success) {
-    return ResponseService.success(todayCountry.message, todayCountry.data);
-  } else {
-    return ResponseService.error(todayCountry.message);
+
+  // Update and retrieve the daily country
+  const updateResult = await guessedCountryService.updateDailyCountry();
+
+  if (!updateResult.success) {
+    return ResponseService.error(updateResult.message);
   }
+
+  return ResponseService.success<GuessedCountry>(updateResult.message);
 }
