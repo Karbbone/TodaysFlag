@@ -1,5 +1,5 @@
 import { GuessedCountryService } from "@/lib/services/guessedCountryService";
-import { ResponseService } from "@/lib/services/responseService";
+import { ResponseService } from "@/lib/services/response/responseService";
 import { GuessedCountry } from "@prisma/client";
 
 /**
