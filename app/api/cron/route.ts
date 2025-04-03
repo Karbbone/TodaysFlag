@@ -1,4 +1,4 @@
-import { GuessedCountryService } from "@/lib/services/guessedCountryService";
+import { DailyCountryService } from "@/lib/services/country/DailyCountryService";
 import { ResponseService } from "@/lib/services/response/responseService";
 import { GuessedCountry } from "@prisma/client";
 
@@ -11,10 +11,10 @@ import { GuessedCountry } from "@prisma/client";
  */
 export async function GET() {
   // Initialize the country service
-  const guessedCountryService = new GuessedCountryService();
+  const dailyCountryService = new DailyCountryService();
 
   // Update and retrieve the daily country
-  const updateResult = await guessedCountryService.updateDailyCountry();
+  const updateResult = await dailyCountryService.updateDailyCountry();
 
   if (!updateResult.success) {
     return ResponseService.error(updateResult.message);
