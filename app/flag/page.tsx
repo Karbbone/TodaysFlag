@@ -13,9 +13,7 @@ export default async function FlagPage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="w-full bg-[url('/assets/heroSection.png')] bg-cover bg-center bg-no-repeat min-h-screen">
-        <FlagContent />
-      </div>
+      <FlagContent />
     </HydrationBoundary>
   );
 }

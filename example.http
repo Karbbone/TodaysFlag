@@ -1,0 +1,5 @@
+### GET dailyCountry
+GET http://localhost:3000/api/dailyCountry/
+
+### GET cron
+GET http://localhost:3000/api/cron/

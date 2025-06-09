@@ -31,7 +31,9 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
         >
           <Header />
-          <main className="flex flex-col items-center">{children}</main>
+          <main className="flex flex-col items-center min-h-[calc(100vh-73px)] bg-[url('/assets/heroSection.png')] bg-cover bg-center bg-no-repeat">
+            {children}
+          </main>
         </body>
       </html>
     </QueryProvider>
