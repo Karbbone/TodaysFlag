@@ -1,4 +1,11 @@
-export async function fetchDailyCountry() {
+import { Country, GuessedCountry } from "@prisma/client";
+import { ApiResponse } from "./types/ApiResponse";
+
+type DailyCountryResponse = Country & GuessedCountry;
+
+export async function fetchDailyCountry(): Promise<
+  ApiResponse<DailyCountryResponse>
+> {
   const response = await fetch("http://localhost:3000/api/dailyCountry");
 
   if (!response.ok) {

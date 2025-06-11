@@ -8,6 +8,15 @@ export class CountryService {
   ) {}
 
   /**
+   * All countries in the database
+   * @public
+   * @returns {Promise<Country[]>} A list of all countries
+   */
+  public async getAllCountries(): Promise<Country[]> {
+    return await prisma.country.findMany();
+  }
+
+  /**
    * Retrieves a random country that hasn't been guessed yet
    * @public
    * @returns {Promise<Country | null>} A random country or null if none available
