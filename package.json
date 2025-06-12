@@ -23,6 +23,7 @@
     "cmdk": "^1.1.1",
     "cobe": "^0.6.3",
     "framer-motion": "^12.4.7",
+    "js-cookie": "^3.0.5",
     "lucide-react": "^0.475.0",
     "motion": "^12.4.7",
     "next": "15.1.7",
@@ -35,6 +36,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tanstack/eslint-plugin-query": "^5.71.5",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
