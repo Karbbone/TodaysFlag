@@ -4,7 +4,9 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.app
+      args:
+        NEXT_PUBLIC_API_HOST: ${NEXT_PUBLIC_API_HOST}
     ports:
       - "3001:3001"
     depends_on:
@@ -12,9 +14,11 @@ services:
     environment:
       - DATABASE_URL=${DATABASE_URL}
       - CRON_API_SECRET=${CRON_API_SECRET}
+      - NEXT_PUBLIC_API_HOST=${NEXT_PUBLIC_API_HOST}
       - PORT=3001
     networks:
       - traefik
+      - app-network
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nextjs-app.rule=Host(`todays-flag.maillet.bzh`)"
@@ -32,19 +36,26 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - traefik
+      - app-network
+
   cron:
     build:
       context: .
       dockerfile: Dockerfile.cron
     environment:
       - CRON_API_SECRET=${CRON_API_SECRET}
-      - APP_URL=http://app:3001
+      - APP_URL=${NEXT_PUBLIC_API_HOST}
     depends_on:
       - app
     restart: always
+
 volumes:
   mysql_data:
 
 networks:
   traefik:
     external: true
+  app-network:
+    driver: bridge

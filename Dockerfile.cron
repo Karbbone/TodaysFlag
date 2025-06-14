@@ -1,25 +1,18 @@
 FROM alpine:latest
 
-# Installation des dépendances
 RUN apk --no-cache add curl tzdata
 
-# Configurer le fuseau horaire (remplacer Europe/Paris par votre fuseau horaire)
 ENV TZ=Europe/Paris
 ENV APP_URL=http://app:3000
-# Créer le répertoire pour les scripts
+
 WORKDIR /app
 
-# Copier le script de mise à jour
 COPY ./scripts/update-daily-country.sh /app/update-daily-country.sh
 
-# S'assurer que le script est exécutable
 RUN chmod +x /app/update-daily-country.sh
 
-# Configurer la tâche cron
-RUN echo "*/3 * * * * /app/update-daily-country.sh >> /var/log/cron.log 2>&1" > /etc/crontabs/root
+RUN echo "0 0 * * * /app/update-daily-country.sh >> /var/log/cron.log 2>&1" > /etc/crontabs/root
 
-# Créer un fichier de log
 RUN touch /var/log/cron.log
 
-# Exécuter crond au premier plan
 CMD crond -f -d 8 && tail -f /var/log/cron.log

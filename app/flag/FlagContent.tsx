@@ -32,9 +32,7 @@ export function FlagContent() {
       // TODO : React confetti & animation : bravo ou bien joué
     } else {
       // TODO : Afficher un message d'erreur
-      alert(
-        `Désolé, ce n'est pas le bon pays. Le pays du jour est ${dailyCountryName}.`
-      );
+      alert(`Désolé, ce n'est pas le bon pays.`);
     }
   };
 
