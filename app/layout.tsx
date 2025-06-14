@@ -26,14 +26,13 @@ export default function RootLayout({
 }>) {
   return (
     <QueryProvider>
-      <html lang="en">
+      <html className="h-full" lang="fr">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+          className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground bg-[url('/assets/heroSection.png')] bg-cover bg-center bg-no-repeat
+          flex flex-col h-full`}
         >
           <Header />
-          <main className="mx-auto min-h-[calc(100vh-73px)] bg-[url('/assets/heroSection.png')] bg-cover bg-center bg-no-repeat">
-            {children}
-          </main>
+          <main className="flex-grow">{children}</main>
         </body>
       </html>
     </QueryProvider>

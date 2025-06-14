@@ -1,50 +1,43 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 function Header() {
   return (
-    <header className="relative">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between">
-          <div>
+    <header className="flex-shrink-0 p-10">
+      <div className="container mx-auto">
+        <div className="relative">
+          <div className="absolute top-1/2 left-0 transform -translate-y-1/2">
             <Image
-              className="h-[52px] my-[10px]"
               src="/assets/todaysFlagIcon.png"
               alt="Logo"
-              width={52}
-              height={52}
+              width={32}
+              height={32}
             />
           </div>
-          <nav>
-            <ul className="flex gap-6">
-              <li>
-                <Link
-                  className="text-foreground no-underline hover:text-primary transition-colors"
-                  href="/"
-                  aria-label="Redirection vers la page d'accueil"
-                >
-                  Accueil
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="text-foreground no-underline hover:text-primary transition-colors"
-                  href="/flag"
-                  aria-label="Redirection vers la page de jeu drapeau"
-                >
-                  Drapeau
-                </Link>
-              </li>
-              <li className="text-muted cursor-default hidden">
-                <span>Capitale</span>
-              </li>
-              <li className="text-muted cursor-default hidden">
-                <span>Course 60s</span>
-              </li>
-            </ul>
-          </nav>
-          <div className="p-2 rounded-xl border-2 border-primary hover:bg-ring cursor-pointer">
-            <span className="text-2xl select-none">{"🌙"}</span>
+
+          <div>
+            <nav>
+              <ul className="flex justify-center gap-6">
+                <li>
+                  <Link
+                    className="text-foreground no-underline hover:text-primary transition-colors"
+                    href="/"
+                    aria-label="Redirection vers la page d'accueil"
+                  >
+                    Accueil
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-foreground no-underline hover:text-primary transition-colors"
+                    href="/flag"
+                    aria-label="Redirection vers la page de jeu drapeau"
+                  >
+                    Drapeau
+                  </Link>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
