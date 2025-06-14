@@ -21,10 +21,10 @@ services:
       - app-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nextjs-app.rule=Host(`todays-flag.maillet.bzh`)"
-      - "traefik.http.routers.nextjs-app.tls=true"
-      - "traefik.http.routers.nextjs-app.tls.certresolver=letsencrypt"
-      - "traefik.http.services.nextjs-app.loadbalancer.server.port=3001"
+      - "traefik.http.routers.todays-flag.rule=Host(`todays-flag.maillet.bzh`)"
+      - "traefik.http.routers.todays-flag.tls=true"
+      - "traefik.http.routers.todays-flag.tls.certresolver=letsencrypt"
+      - "traefik.http.services.todays-flag.loadbalancer.server.port=3001"
       - "traefik.docker.network=traefik"
 
   db:
