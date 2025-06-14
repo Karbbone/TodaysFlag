@@ -1,7 +1,8 @@
+import Header from "@/components/Header";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Header from "@/components/Header";
 import "./globals.css";
+import QueryProvider from "./QueryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,13 +25,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
-      >
-        <Header />
-        <main className="flex flex-col items-center">{children}</main>
-      </body>
-    </html>
+    <QueryProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        >
+          <Header />
+          <main className="mx-auto min-h-[calc(100vh-73px)] bg-[url('/assets/heroSection.png')] bg-cover bg-center bg-no-repeat">
+            {children}
+          </main>
+        </body>
+      </html>
+    </QueryProvider>
   );
 }

@@ -1,0 +1,7 @@
+### GET dailyCountry
+GET http://localhost:3000/api/dailyCountry/
+
+### GET cron
+POST http://localhost:3000/api/cron
+Content-Type: application/json
+Authorization: Bearer {{$dotenv CRON_API_SECRET}}
