@@ -7,7 +7,11 @@ const nextConfig: NextConfig = {
       process.env.NEXT_PUBLIC_API_HOST || "http://localhost:3000",
   },
   images: {
-    domains: ["flagcdn.com"],
+    domains: [
+      "flagcdn.com",
+      "avatars.githubusercontent.com",
+      "upload.wikimedia.org",
+    ],
   },
 };
 
