@@ -20,8 +20,7 @@ export function FlagContent() {
     const countryCode = dailyCountry?.data.CC;
 
     if (dailyCountryName === selectedCountry) {
-      // Utiliser la date du jour pour la clé du cookie
-      const today = new Date().toISOString().split("T")[0]; // Format YYYY-MM-DD
+      const today = new Date().toISOString().split("T")[0];
 
       Cookies.set(`guessed_country_${today}`, countryCode ?? " ", {
         expires: 1,
@@ -30,8 +29,6 @@ export function FlagContent() {
       });
 
       setHasGuessed(true);
-
-      alert("Bravo ! Vous avez deviné le pays !");
       // TODO : React confetti & animation : bravo ou bien joué
     } else {
       // TODO : Afficher un message d'erreur

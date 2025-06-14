@@ -1,18 +1,16 @@
-FROM node:22-alpine
+FROM node:21-alpine
 
 WORKDIR /app
 
-# Installation de pnpm
-RUN npm install -g pnpm
+COPY package.json package-lock.json* ./
 
-# Copie du package.json uniquement
-COPY package.json ./
+RUN npm install
 
-# Installation des dépendances
-RUN pnpm install
+COPY prisma ./prisma/
+RUN npx prisma generate
 
-# Exposition du port
+COPY . .
+
 EXPOSE 3000
 
-# Le code source sera monté en volume, pas besoin de COPY
-CMD ["pnpm", "dev"]
+CMD ["npm", "run", "dev"]

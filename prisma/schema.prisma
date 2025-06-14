@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,18 +8,18 @@ datasource db {
 }
 
 model Country {
-  CC  String   @id
-  NameENG String
-  NameFRA String
-  NameESP String
-  Flag String
-  Capital String?
-  Map String
+  CC             String          @id
+  NameENG        String
+  NameFRA        String
+  NameESP        String
+  Flag           String
+  Capital        String?
+  Map            String
   GuessedCountry GuessedCountry?
 }
 
 model GuessedCountry {
   guessedAt DateTime @id @default(now())
-  countryCC String @unique
-  country   Country @relation(fields: [countryCC], references: [CC])
+  countryCC String   @unique
+  country   Country  @relation(fields: [countryCC], references: [CC])
 }

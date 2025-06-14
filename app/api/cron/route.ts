@@ -1,24 +1,34 @@
 import { DailyCountryService } from "@/lib/services/country/DailyCountryService";
 import { ResponseService } from "@/lib/services/response/responseService";
-import { GuessedCountry } from "@prisma/client";
+import { NextRequest, NextResponse } from "next/server";
 
-/**
- * API route handler for updating the daily country
- * @async
- * @function GET
- * @description This endpoint updates the daily country to guess and returns the selected country's information
- * @returns {Promise<Response>} A response containing either:
- */
-export async function GET() {
-  // Initialize the country service
-  const dailyCountryService = new DailyCountryService();
+const API_SECRET_KEY = process.env.CRON_API_SECRET;
 
-  // Update and retrieve the daily country
-  const updateResult = await dailyCountryService.updateDailyCountry();
-
-  if (!updateResult.success) {
-    return ResponseService.error(updateResult.message);
+export async function POST(request: NextRequest) {
+  const authHeader = request.headers.get("authorization");
+  if (!authHeader || authHeader !== `Bearer ${API_SECRET_KEY}`) {
+    return NextResponse.json(
+      { success: false, message: "Unauthorized access" },
+      { status: 401 }
+    );
   }
 
-  return ResponseService.success<GuessedCountry>(updateResult.message);
+  try {
+    const dailyCountryService = new DailyCountryService();
+    const result = await dailyCountryService.updateDailyCountry();
+
+    if (result.success) {
+      return ResponseService.success(
+        "Daily country updated successfully",
+        result.data
+      );
+    } else {
+      return ResponseService.error(
+        result.message || "Failed to update daily country"
+      );
+    }
+  } catch (error) {
+    console.error("Error updating daily country", error);
+    return ResponseService.error("Internal server error");
+  }
 }
