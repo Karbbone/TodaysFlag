@@ -2,7 +2,7 @@ import { fetchCountry } from "@/lib/api/Country";
 import { fetchDailyCountry } from "@/lib/api/dailyCountry";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { getQueryClient } from "../makeClient";
-import { FlagContent } from "./FlagContent";
+import { FlagContent } from "./components/FlagContent";
 
 export default async function FlagPage() {
   const queryClient = getQueryClient();
