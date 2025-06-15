@@ -6,13 +6,15 @@ import { useDailyCountry } from "@/hooks/useDailyCountry";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Confetti from "react-confetti";
 import { SearchCountryResponse } from "./SearchCountryResponse";
+import { WinningMessage } from "./WinningMessage";
 
 export function FlagContent() {
   const { data: dailyCountry } = useDailyCountry();
   const { data: countries } = useCountry();
   const [selectedCountryValue, setSelectedCountryValue] = useState<string>("");
-  const [hasGuessed, setHasGuessed] = useState<boolean>(false);
+  const [hasGuessed, setHasGuessed] = useState<boolean>(true);
 
   const handleClickGuess = () => {
     const selectedCountry = selectedCountryValue.split("/")[0];
@@ -48,39 +50,43 @@ export function FlagContent() {
   }, [dailyCountry]);
 
   return (
-    <div className="text-center max-w-7xl mx-auto space-y-12">
-      <Image
-        className="inline-block w-[350px] h-auto"
-        src={dailyCountry?.data.Flag ?? ""}
-        alt="game-flag"
-        width={350}
-        height={100}
-      />
-      <div className="space-y-6">
-        {hasGuessed ? (
-          <div className="flex flex-col items-center space-y-4 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl shadow-sm border border-green-100 animate-fade-in">
-            <div className="flex items-center space-x-2">
-              <h3 className="text-lg font-medium text-green-800">
-                Félicitations !
-              </h3>
-            </div>
-            <p className="text-center text-green-700">
-              Vous avez correctement identifié le drapeau du jour, à demain pour
-              le prochain drapeau !
-            </p>
-          </div>
-        ) : (
-          <>
-            <SearchCountryResponse
-              countries={countries?.data ?? []}
-              onValueChange={setSelectedCountryValue}
-            />
-            <Button onClick={handleClickGuess} disabled={!selectedCountryValue}>
-              Deviner
-            </Button>
-          </>
-        )}
+    <>
+      {hasGuessed && (
+        <Confetti
+          width={window.screen.width}
+          height={window.screen.height - 200}
+          numberOfPieces={200}
+          recycle={false}
+          gravity={0.3}
+        />
+      )}
+      <div className="text-center max-w-7xl mx-auto space-y-12">
+        <Image
+          className="inline-block w-[350px] h-auto"
+          src={dailyCountry?.data.Flag ?? ""}
+          alt="game-flag"
+          width={350}
+          height={100}
+        />
+        <div className="space-y-6">
+          {hasGuessed ? (
+            <WinningMessage />
+          ) : (
+            <>
+              <SearchCountryResponse
+                countries={countries?.data ?? []}
+                onValueChange={setSelectedCountryValue}
+              />
+              <Button
+                onClick={handleClickGuess}
+                disabled={!selectedCountryValue}
+              >
+                Deviner
+              </Button>
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
