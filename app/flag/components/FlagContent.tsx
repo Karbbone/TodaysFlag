@@ -4,9 +4,13 @@ import { Button } from "@/components/ui/button";
 import { useCountry } from "@/hooks/useCountry";
 import { useDailyCountry } from "@/hooks/useDailyCountry";
 import Cookies from "js-cookie";
+import "leaflet-defaulticon-compatibility";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import "leaflet/dist/leaflet.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
+import LeafletMap from "./LeafletMap";
 import { SearchCountryResponse } from "./SearchCountryResponse";
 import { WinningMessage } from "./WinningMessage";
 
@@ -31,7 +35,6 @@ export function FlagContent() {
       });
 
       setHasGuessed(true);
-      // TODO : React confetti & animation : bravo ou bien joué
     } else {
       // TODO : Afficher un message d'erreur
       alert(`Désolé, ce n'est pas le bon pays.`);
@@ -70,7 +73,12 @@ export function FlagContent() {
         />
         <div className="space-y-6">
           {hasGuessed ? (
-            <WinningMessage />
+            <>
+              <WinningMessage />
+              {dailyCountry?.data && (
+                <LeafletMap mapUrl={dailyCountry.data.Map} />
+              )}
+            </>
           ) : (
             <>
               <SearchCountryResponse
