@@ -3,13 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { useCountry } from "@/hooks/useCountry";
 import { useDailyCountry } from "@/hooks/useDailyCountry";
-import Cookies from "js-cookie";
-import "leaflet-defaulticon-compatibility";
-import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import "leaflet/dist/leaflet.css";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Confetti from "react-confetti";
+import { useGuessCountry } from "../hooks/useGuessCountry";
 import LeafletMap from "./LeafletMap";
 import { SearchCountryResponse } from "./SearchCountryResponse";
 import { WinningMessage } from "./WinningMessage";
@@ -18,39 +15,15 @@ export function FlagContent() {
   const { data: dailyCountry } = useDailyCountry();
   const { data: countries } = useCountry();
   const [selectedCountryValue, setSelectedCountryValue] = useState<string>("");
-  const [hasGuessed, setHasGuessed] = useState<boolean>(true);
+  const { hasGuessed, checkGuess } = useGuessCountry({ dailyCountry });
 
   const handleClickGuess = () => {
-    const selectedCountry = selectedCountryValue.split("/")[0];
-    const dailyCountryName = dailyCountry?.data.NameFRA;
-    const countryCode = dailyCountry?.data.CC;
+    const isCorrect = checkGuess(selectedCountryValue);
 
-    if (dailyCountryName === selectedCountry) {
-      const today = new Date().toISOString().split("T")[0];
-
-      Cookies.set(`guessed_country_${today}`, countryCode ?? " ", {
-        expires: 1,
-        path: "/",
-        sameSite: "strict",
-      });
-
-      setHasGuessed(true);
-    } else {
-      // TODO : Afficher un message d'erreur
+    if (!isCorrect) {
       alert(`Désolé, ce n'est pas le bon pays.`);
     }
   };
-
-  useEffect(() => {
-    if (dailyCountry?.data) {
-      const today = new Date().toISOString().split("T")[0];
-      const guessedToday = Cookies.get(`guessed_country_${today}`);
-
-      if (guessedToday === dailyCountry.data.CC) {
-        setHasGuessed(true);
-      }
-    }
-  }, [dailyCountry]);
 
   return (
     <>
@@ -63,6 +36,7 @@ export function FlagContent() {
           gravity={0.3}
         />
       )}
+
       <div className="text-center max-w-7xl mx-auto space-y-12">
         <Image
           className="inline-block w-[350px] h-auto"
@@ -71,7 +45,8 @@ export function FlagContent() {
           width={350}
           height={100}
         />
-        <div className="space-y-6">
+
+        <div className="space-y-12">
           {hasGuessed ? (
             <>
               <WinningMessage />
