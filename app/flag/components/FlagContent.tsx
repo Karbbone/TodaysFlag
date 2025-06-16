@@ -1,8 +1,10 @@
 "use client";
 
+import { H1Title } from "@/app/components/Title/H1Title";
 import { Button } from "@/components/ui/button";
 import { useCountry } from "@/hooks/useCountry";
 import { useDailyCountry } from "@/hooks/useDailyCountry";
+import { Database } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import Confetti from "react-confetti";
@@ -36,7 +38,7 @@ export function FlagContent() {
           gravity={0.3}
         />
       )}
-
+      <H1Title title="Devine le pays du jour" />
       <div className="text-center max-w-7xl mx-auto space-y-12">
         <Image
           className="inline-block w-[350px] h-auto"
@@ -50,9 +52,19 @@ export function FlagContent() {
           {hasGuessed ? (
             <>
               <WinningMessage />
-              {dailyCountry?.data && (
-                <LeafletMap mapUrl={dailyCountry.data.Map} />
-              )}
+              <div className="md:flex md:justify-center md:items-center">
+                {dailyCountry?.data && (
+                  <div className="md:w-1/2">
+                    <LeafletMap mapUrl={dailyCountry.data.Map} />
+                  </div>
+                )}
+                <div className="text-left p-6 rounded-r-xl  backdrop-blur-sm border-2 border-border w-full md:w-1/2 md:h-[400px]">
+                  <div className="flex items-center justify-start gap-4 mb-6">
+                    <Database className="h-8 w-8 text-primary" />
+                    <h2 className="text-2xl font-bold">Informations du pays</h2>
+                  </div>
+                </div>
+              </div>
             </>
           ) : (
             <>

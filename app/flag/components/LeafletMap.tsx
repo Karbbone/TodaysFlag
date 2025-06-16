@@ -90,7 +90,7 @@ const LeafletMap = ({ mapUrl }: LeafletMapProps) => {
   }, [mapUrl]);
 
   return (
-    <div className="h-[400px] w-full rounded-lg border relative">
+    <div className="h-[400px] w-full relative">
       {isLoading && (
         <div className="absolute inset-0 bg-white/90 h-full w-full flex items-center justify-center z-[1000]">
           <Loader className="animate-spin"></Loader>
@@ -99,7 +99,7 @@ const LeafletMap = ({ mapUrl }: LeafletMapProps) => {
       <MapContainer
         center={coordinates}
         zoom={5}
-        className="h-full w-full"
+        className="h-full w-full rounded-l-xl"
         ref={mapRef}
       >
         <TileLayer

@@ -1,6 +1,6 @@
 import { BlurCircle } from "@/app/components/BlurCircle";
 import { MainDescriptionTitle } from "@/app/components/MainDescriptionTitle";
-import { MainTitle } from "@/app/components/MainTitle";
+import { MainTitle } from "@/app/components/Title/MainTitle";
 import { Button } from "@/components/ui/button";
 import { Wrapper } from "@/components/Wrapper";
 import { Flag } from "lucide-react";
