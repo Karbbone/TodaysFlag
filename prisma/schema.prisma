@@ -1,12 +1,3 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
-}
-
 model Country {
   CC             String          @id
   NameENG        String
@@ -16,19 +7,37 @@ model Country {
   Capital        String?
   Map            String
   ONUMember      Boolean
-  GuessedCountry GuessedCountry?
   currency_name  String
-  currency       Currency @relation(fields: [currency_name], references: [name])
+  phone_code     String
+  regionId       Int
+  subregionId    Int
+
+  GuessedCountry GuessedCountry?
+  currency       Currency  @relation("CurrencyRelation",fields: [currency_name], references: [name])
+  region         Region    @relation("RegionRelation", fields: [regionId], references: [id])
+  subregion      Subregion @relation("SubregionRelation", fields: [subregionId], references: [id])
 }
 
-model Currency{
-  name String @id
-  symbol String @unique
-  countries Country[]
+model Currency {
+  name      String    @id
+  symbol    String    @unique
+  countries Country[] @relation("CurrencyRelation")
 }
 
 model GuessedCountry {
   guessedAt DateTime @id @default(now())
   countryCC String   @unique
   country   Country  @relation(fields: [countryCC], references: [CC])
+}
+
+model Region {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  countries Country[] @relation("RegionRelation")
+}
+
+model Subregion {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  countries Country[] @relation("SubregionRelation")
 }
