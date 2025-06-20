@@ -9,13 +9,18 @@ model Country {
   ONUMember      Boolean
   currency_name  String
   phone_code     String
-  regionId       Int
-  subregionId    Int
+  region_id      Int
+  subregion_id   Int
+  latitude       Float
+  longitude      Float
+  population     Int
+  side_drive     String
+  time_zone      String
 
   GuessedCountry GuessedCountry?
   currency       Currency  @relation("CurrencyRelation",fields: [currency_name], references: [name])
-  region         Region    @relation("RegionRelation", fields: [regionId], references: [id])
-  subregion      Subregion @relation("SubregionRelation", fields: [subregionId], references: [id])
+  region         Region    @relation("RegionRelation", fields: [region_id], references: [id])
+  subregion      Subregion @relation("SubregionRelation", fields: [subregion_id], references: [id])
   languages      Language[] @relation("LanguageRelation")
 }
 
