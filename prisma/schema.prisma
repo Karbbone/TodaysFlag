@@ -15,7 +15,16 @@ model Country {
   Flag           String
   Capital        String?
   Map            String
+  ONUMember      Boolean
   GuessedCountry GuessedCountry?
+  currency_name  String
+  currency       Currency @relation(fields: [currency_name], references: [name])
+}
+
+model Currency{
+  name String @id
+  symbol String @unique
+  countries Country[]
 }
 
 model GuessedCountry {
