@@ -16,8 +16,14 @@ model Country {
   currency       Currency  @relation("CurrencyRelation",fields: [currency_name], references: [name])
   region         Region    @relation("RegionRelation", fields: [regionId], references: [id])
   subregion      Subregion @relation("SubregionRelation", fields: [subregionId], references: [id])
+  languages      Language[] @relation("LanguageRelation")
 }
 
+model Language {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  countries Country[] @relation("LanguageRelation")
+}
 model Currency {
   name      String    @id
   symbol    String    @unique
