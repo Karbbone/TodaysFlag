@@ -1,12 +1,12 @@
 model Country {
-  CC             String          @id
-  NameENG        String
-  NameFRA        String
-  NameESP        String
-  Flag           String
-  Capital        String?
-  Map            String
-  ONUMember      Boolean
+  cc             String          @id
+  name_eng       String
+  name_fra       String
+  name_esp       String
+  flag           String
+  capital        String?
+  map            String
+  onu_member     Boolean
   currency_name  String
   phone_code     String
   region_id      Int
@@ -17,12 +17,13 @@ model Country {
   side_drive     String
   time_zone      String
 
-  GuessedCountry GuessedCountry?
-  currency       Currency  @relation("CurrencyRelation",fields: [currency_name], references: [name])
+  guessed_country GuessedCountry?
+  currency       Currency  @relation("CurrencyRelation", fields: [currency_name], references: [name])
   region         Region    @relation("RegionRelation", fields: [region_id], references: [id])
   subregion      Subregion @relation("SubregionRelation", fields: [subregion_id], references: [id])
   languages      Language[] @relation("LanguageRelation")
 }
+
 
 model Language {
   id        Int       @id @default(autoincrement())
@@ -36,9 +37,9 @@ model Currency {
 }
 
 model GuessedCountry {
-  guessedAt DateTime @id @default(now())
-  countryCC String   @unique
-  country   Country  @relation(fields: [countryCC], references: [CC])
+  guessed_at DateTime @id @default(now())
+  country_cc String   @unique
+  country   Country  @relation(fields: [country_cc], references: [cc])
 }
 
 model Region {
